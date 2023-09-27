@@ -1,0 +1,14 @@
+- Prompt name
+- System message
+- GPT model
+- Temperature
+- Prompt
+
+
+{
+    "promptName": "Prompt 1",
+    "systemMessage": "This is system message for Prompt 1",
+    "gptModel": "gpt-3",
+    "temperature": 0.5,
+    "prompt": "Hello, how are you?"
+}
