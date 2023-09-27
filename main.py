@@ -56,8 +56,8 @@ def chat_with_gpt(prompt_number):
     return response["choices"][0]["message"]["content"]
 
 
-def play_completion_sound():
-    fn = os.path.join(os.path.dirname(__file__), "completed.wav")
+def play_sound(file_name):
+    fn = os.path.join(os.path.dirname(__file__), file_name)
     wave_obj = sa.WaveObject.from_wave_file(fn)
     play_obj = wave_obj.play()
     play_obj.wait_done()  # Wait for the sound to finish playing
@@ -65,9 +65,10 @@ def play_completion_sound():
 
 def main():
     print("Write a keystroke to be captured by the script...")
+    play_sound("completed.wav")
     intercept_next_keystroke()
     pyperclip.copy(global_response)                                # Save output to clipboard
-    play_completion_sound()
+    play_sound("completed.wav")
 
 
 if __name__ == "__main__":
