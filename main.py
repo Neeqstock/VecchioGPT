@@ -40,7 +40,8 @@ def read_json_file(file_path):
 def chat_with_gpt(prompt_number):
     # Define the system message
     user_input = pyperclip.paste()                          # Get string from clipboard
-    settings = read_json_file("prompts/" + str(prompt_number) + ".json")
+    fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(prompt_number) + ".json")
+    settings = read_json_file(fn)
 
     mergedPrompt = settings["prompt"].replace('§', user_input)
 
@@ -56,7 +57,8 @@ def chat_with_gpt(prompt_number):
 
 
 def play_completion_sound():
-    wave_obj = sa.WaveObject.from_wave_file('completed.wav')
+    fn = os.path.join(os.path.dirname(__file__), "completed.wav")
+    wave_obj = sa.WaveObject.from_wave_file(fn)
     play_obj = wave_obj.play()
     play_obj.wait_done()  # Wait for the sound to finish playing
 
