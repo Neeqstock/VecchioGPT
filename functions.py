@@ -3,13 +3,16 @@ import openai
 import pyperclip
 import os
 import simpleaudio as sa
-from pynput import keyboard
 import json
 
 
 global global_response
 
-# Test Switch
+# Sounds
+soundStart = "start.wav"
+soundCompleted = "completed.wav"
+
+# TestSwitch (debug)
 testSwitch = False
 
 # OpenAI key
