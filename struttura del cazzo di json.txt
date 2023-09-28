@@ -12,3 +12,6 @@
     "temperature": 0.5,
     "prompt": "Hello, how are you?"
 }
+
+Ahhh, Dio mio, bello mio, come funziona sto coso? Dove sei, cagnaccio ladro?
+1

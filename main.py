@@ -10,6 +10,10 @@ import json
 
 global global_response
 
+acceptedKeystrokes = "12345"
+# Test Switch
+testSwitch = False
+
 # OpenAI key
 api_key = "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"
 # Initialize the OpenAI API client
@@ -18,9 +22,9 @@ openai.api_key = api_key
 
 def on_key_press(key):
     global global_response
-    global_response = chat_with_gpt(key.char)
-    return False
-
+    if key.char in acceptedKeystrokes:
+        global_response = chat_with_gpt(key.char)
+        return False
 
 def intercept_next_keystroke():
     # Create a keyboard listener
@@ -38,22 +42,31 @@ def read_json_file(file_path):
 
 
 def chat_with_gpt(prompt_number):
-    # Define the system message
-    user_input = pyperclip.paste()                          # Get string from clipboard
+    # Get string from clipboard
+    user_input = pyperclip.paste()
+    # Seeks the file name                   
     fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(prompt_number) + ".json")
+    # Loads the settings from fn file name
     settings = read_json_file(fn)
-
+    # Replaces the § sign with the contents of the clipboard
     mergedPrompt = settings["prompt"].replace('§', user_input)
 
-    print(settings)
+    if(testSwitch == True):
+        print(settings)
+
+    # Print prompt name
+    print('Computing prompt: "' + settings["promptName"] + '"...')
 
     # Create a dataset using GPT
     response = openai.ChatCompletion.create(model=settings["gptModel"],
                                             messages=[{"role": "system", "content": settings["systemMessage"]},
                                             {"role": "user", "content": mergedPrompt}])
-    print(response)
+    if(testSwitch == True):
+        print(response)
 
-    return response["choices"][0]["message"]["content"]
+    ret = response["choices"][0]["message"]["content"]
+    print("Answer:" + ret)
+    return ret
 
 
 def play_completion_sound():
@@ -64,7 +77,7 @@ def play_completion_sound():
 
 
 def main():
-    print("Write a keystroke to be captured by the script...")
+    print("Waiting prompt number...")
     intercept_next_keystroke()
     pyperclip.copy(global_response)                                # Save output to clipboard
     play_completion_sound()
