@@ -16,7 +16,11 @@ soundCompleted = "completed.wav"
 testSwitch = False
 
 # OpenAI key
-api_key = "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"
+def read_api_key(file_path):
+    with open(file_path, 'r') as f:
+        return f.readline().strip().split('=')[1]
+
+api_key = read_api_key('openai_key.txt')
 
 # Initialize the OpenAI API client
 openai.api_key = api_key

@@ -1,7 +1,7 @@
 {
-    "promptName": "Name",
+    "promptName": "Custom prompt 5",
     "systemMessage": "You're an helpful assistant. You can help me by answering my questions.",
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,
-    "prompt": "Hello. These are the contents of my clipboard: §. Do whatever you want with them."
+    "prompt": "§"
 }
