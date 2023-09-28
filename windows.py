@@ -1,7 +1,6 @@
 import keyboard
 import functions
 import pyperclip
-import gui
 import queue
 import tkinter as tk
 import subprocess

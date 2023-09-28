@@ -1,6 +1,6 @@
 {
-    "promptName": "Summarize",
-    "systemMessage": "Answer by summarizing my texts. Use the same language as my input text.",
+    "promptName": "Custom prompt 1",
+    "systemMessage": "You're an helpful assistant. You can help me by answering my questions.",
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,
     "prompt": "§"

@@ -14,6 +14,11 @@ possible_prompts = [] # List of possible prompts
 selected_index = -1  # Currently selected item index
 tempPromptName = ""
 
+def bring_to_front(window):
+    window.lift()
+    window.attributes('-topmost', True)
+    window.after_idle(window.attributes, '-topmost', False)
+
 def on_search(event):
     global selected_index
     search_text = entry.get()
@@ -68,6 +73,7 @@ def on_down_arrow(event):
         listbox.activate(selected_index)
 
 def show_window():
+    bring_to_front(root)
     root.mainloop()
     
 
