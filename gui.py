@@ -3,19 +3,16 @@ import tkinter as tk
 from tkinter import ttk
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+import os
+import json
+import functions
+import pyperclip
 
-# List of possible prompts
-possible_prompts = [
-    "Hello, how are you?",
-    "What's the weather like today?",
-    "Tell me a joke.",
-    "What's your name?",
-    "What's the capital of France?",
-    "How does photosynthesis work?",
-    "What's the meaning of life?"
-]
-
+promptsDirectoryName = 'prompts' # Directory containing the prompts
+promptsDictionary = { }
+possible_prompts = [] # List of possible prompts
 selected_index = -1  # Currently selected item index
+tempPromptName = ""
 
 def on_search(event):
     global selected_index
@@ -36,6 +33,13 @@ def on_select(event):
         print(f"Selected Prompt: {selected_item}")
         entry.delete(0, tk.END)
         entry.insert(0, selected_item)
+        global global_response
+        functions.play_sound(functions.soundStart)
+        tempPromptName = selected_item  # Store the selected item so it can destroy the root window
+        root.destroy()
+        global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
+        pyperclip.copy(global_response)
+        functions.play_sound(functions.soundCompleted)
 
 def on_tab(event):
     if listbox.size() > 0:
@@ -63,16 +67,41 @@ def on_down_arrow(event):
         listbox.selection_set(selected_index)
         listbox.activate(selected_index)
 
+def show_window():
+    root.mainloop()
+    
+
+
+# Populate the prompts list =================
+
+for filename in os.listdir(promptsDirectoryName):
+    # Check if the file is a .json file
+    if filename.endswith('.json'):
+        # Open the .json file
+        with open(f'{promptsDirectoryName}/{filename}') as f:
+            # Load the JSON data from the file
+            data = json.load(f)
+            # Append the 'promptName' and filename to the dictionary
+            promptsDictionary[data['promptName']] = filename
+            # Append the 'promptName' to the list to be used by the GUI
+            possible_prompts.append(data['promptName'])
+
+for key, value in promptsDictionary.items():
+    print(f"Prompt name: {key}, Filename: {value}")
+
+
+# Define the window ====================
+
 # Create the main window
 root = tk.Tk()
-root.title("Modern GUI")
+root.title("VecchioGPT")
 
 # Apply a themed style for a modern look
 style = ttk.Style()
 style.theme_use("clam")
 
 # Create and set the label
-label = ttk.Label(root, text="This is my GUI", font=("Helvetica", 14))
+label = ttk.Label(root, text="VecchioGPT", font=("Helvetica", 14))
 label.pack(pady=10)
 
 # Create and set the entry widget
@@ -89,6 +118,7 @@ listbox.bind("<Return>", on_enter)
 listbox.bind("<Up>", on_up_arrow)
 listbox.bind("<Down>", on_down_arrow)
 
-# Start the GUI event loop
-root.mainloop()
+# Main entry point ===================================
 
+if __name__ == "__main__":
+    show_window()

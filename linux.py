@@ -31,7 +31,7 @@ def send_system_alert(message, expire_time = 1500):
 def on_key_press(key):
     global global_response
     if key.char in acceptedKeystrokes:
-        global_response = functions.chat_with_gpt(key.char)
+        global_response = functions.chat_with_gpt(key.char + ".json")
         return False
 
 def on_key_release(key):

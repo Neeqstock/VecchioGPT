@@ -27,11 +27,11 @@ def read_json_file(file_path):
     return data
 
 
-def chat_with_gpt(prompt_number):
+def chat_with_gpt(file_name):
     # Get string from clipboard
     user_input = pyperclip.paste()
     # Seeks the file name                   
-    fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(prompt_number) + ".json")
+    fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
     # Loads the settings from fn file name
     settings = read_json_file(fn)
     # Replaces the § sign with the contents of the clipboard
