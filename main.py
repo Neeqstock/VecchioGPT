@@ -15,6 +15,19 @@ api_key = "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"
 # Initialize the OpenAI API client
 openai.api_key = api_key
 
+def send_system_alert(message, expire_time = 1500):
+    # Determine the platform (Linux or Windows)
+    current_platform = platform.system()
+
+    try:
+        # Send a system alert based on the platform
+        if current_platform == "Linux":
+            os.system(f'notify-send --expire-time={expire_time} "{message}"')
+        else:
+            print("Unsupported platform. Cannot send system alert.")
+    except Exception as e:
+        print(f"Error sending system alert: {e}")
+
 
 def on_key_press(key):
     global global_response
@@ -65,11 +78,13 @@ def play_sound(file_name):
 
 def main():
     print("Write a keystroke to be captured by the script...")
+    send_system_alert("Input prompt for VecchioGPT", 5000)
     play_sound("completed.wav")
     intercept_next_keystroke()
+    send_system_alert("Running VecchioGPT...")
     pyperclip.copy(global_response)                                # Save output to clipboard
+    send_system_alert("Completed.")
     play_sound("completed.wav")
-
 
 if __name__ == "__main__":
     main()
