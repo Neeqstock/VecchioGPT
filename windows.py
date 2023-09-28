@@ -1,11 +1,8 @@
 import keyboard
 import functions
-import pystray
-from PIL import Image
 
-
+# Wait message string
 wait_message = "Waiting for CTRL+SHIFT+(number)..."
-
 
 def launch_prompt(val):
     functions.play_sound(functions.soundStart)
@@ -27,21 +24,3 @@ if __name__ == "__main__":
     keyboard.add_hotkey("ctrl+shift+9", lambda: launch_prompt(9))
     keyboard.add_hotkey("ctrl+shift+0", lambda: launch_prompt(0))
     keyboard.wait()
-
-
-
-
-def exit_action(icon, item):
-    icon.stop()
-
-# Create an image for the icon
-image = Image.open('icon.png')  # specify the path to your icon file
-
-# Create a menu for the icon
-menu = (pystray.MenuItem('Exit', exit_action),)
-
-# Create the icon object
-icon = pystray.Icon("name", image, "My System Tray Icon", menu)
-
-# Run the icon
-icon.run()
