@@ -7,6 +7,7 @@ import os
 import json
 import functions
 import pyperclip
+import sv_ttk
 
 # Directory containing the prompts
 promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
@@ -125,6 +126,8 @@ listbox.bind("<Down>", on_down_arrow)
 # Populate the listbox with possible prompts
 for prompt in possible_prompts:
     listbox.insert(tk.END, prompt)
+
+sv_ttk.set_theme("dark")
 
 # Main entry point ===================================
 if __name__ == "__main__":
