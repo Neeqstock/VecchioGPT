@@ -8,9 +8,10 @@ import json
 import functions
 import pyperclip
 
-promptsDirectoryName = 'prompts' # Directory containing the prompts
-promptsDictionary = { }
-possible_prompts = [] # List of possible prompts
+# Directory containing the prompts
+promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
+promptsDictionary = {}
+possible_prompts = []  # List of possible prompts
 selected_index = -1  # Currently selected item index
 tempPromptName = ""
 
@@ -75,11 +76,8 @@ def on_down_arrow(event):
 def show_window():
     bring_to_front(root)
     root.mainloop()
-    
-
 
 # Populate the prompts list =================
-
 for filename in os.listdir(promptsDirectoryName):
     # Check if the file is a .json file
     if filename.endswith('.json'):
@@ -92,12 +90,7 @@ for filename in os.listdir(promptsDirectoryName):
             # Append the 'promptName' to the list to be used by the GUI
             possible_prompts.append(data['promptName'])
 
-for key, value in promptsDictionary.items():
-    print(f"Prompt name: {key}, Filename: {value}")
-
-
 # Define the window ====================
-
 # Create the main window
 root = tk.Tk()
 root.title("VecchioGPT")
@@ -105,6 +98,11 @@ root.title("VecchioGPT")
 # Apply a themed style for a modern look
 style = ttk.Style()
 style.theme_use("clam")
+
+# Configure the style for a modern and stylish look
+style.configure("TLabel", background="#3498db", foreground="white", padding=10)
+style.configure("TEntry", background="#ecf0f1", padding=10)
+style.configure("TListbox", background="#ecf0f1", padding=10)
 
 # Create and set the label
 label = ttk.Label(root, text="VecchioGPT", font=("Helvetica", 14))
@@ -124,7 +122,10 @@ listbox.bind("<Return>", on_enter)
 listbox.bind("<Up>", on_up_arrow)
 listbox.bind("<Down>", on_down_arrow)
 
-# Main entry point ===================================
+# Populate the listbox with possible prompts
+for prompt in possible_prompts:
+    listbox.insert(tk.END, prompt)
 
+# Main entry point ===================================
 if __name__ == "__main__":
     show_window()
