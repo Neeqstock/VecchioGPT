@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import platform
 import functions
 from pynput import keyboard
