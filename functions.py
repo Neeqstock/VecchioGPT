@@ -20,7 +20,7 @@ def read_api_key(file_path):
     with open(file_path, 'r') as f:
         return f.readline().strip().split('=')[1]
 
-api_key = read_api_key('openai_key.txt')
+api_key = read_api_key(os.path.join(os.path.dirname(__file__), 'openai_key.txt'))
 
 # Initialize the OpenAI API client
 openai.api_key = api_key
@@ -34,7 +34,7 @@ def read_json_file(file_path):
 def chat_with_gpt(file_name):
     # Get string from clipboard
     user_input = pyperclip.paste()
-    # Seeks the file name                   
+    # Seeks the file name
     fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
     # Loads the settings from fn file name
     settings = read_json_file(fn)
