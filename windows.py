@@ -7,7 +7,7 @@ import subprocess
 import os
 
 # Wait message string
-wait_message = "Waiting for CTRL+SHIFT+(number)..."
+wait_message = "Waiting for CTRL+SHIFT+(key)..."
 
 def launch_numeral_prompt(val):
     functions.play_sound(functions.soundStart)
@@ -34,6 +34,7 @@ def print_intro_console():
         print("CTRL+SHIFT+" + str(i) + ": " + data['promptName'])
     print("")
     print("CTRL+SHIFT+K: calls the fuzzy prompt selector GUI")
+    print("")
     print("=============================================")
     print("")
 

@@ -4,6 +4,7 @@ import pyperclip
 import os
 import simpleaudio as sa
 import json
+from termcolor import colored
 
 
 global global_response
@@ -45,7 +46,9 @@ def chat_with_gpt(file_name):
         print(settings)
 
     # Print prompt name
-    print('Computing prompt: "' + settings["promptName"] + '"...')
+    print()
+    print('Computing "' + colored(settings["promptName"], "yellow") + '" on input:')
+    print(user_input)
 
     # Create a dataset using GPT
     response = openai.ChatCompletion.create(model=settings["gptModel"],
@@ -55,7 +58,10 @@ def chat_with_gpt(file_name):
         print(response)
 
     ret = response["choices"][0]["message"]["content"]
-    print("Answer: " + ret)
+    print("")
+    print(colored("Output: ", "green"))
+    print(ret)
+    print("")
     print("=============================================")
     print("")
     return ret
