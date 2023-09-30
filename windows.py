@@ -4,6 +4,7 @@ import pyperclip
 import queue
 import tkinter as tk
 import subprocess
+import os
 
 # Wait message string
 wait_message = "Waiting for CTRL+SHIFT+(number)..."
@@ -23,6 +24,17 @@ def launch_gui_prompt():
     print(wait_message)
 
 if __name__ == "__main__":
+    # Write prompts mapped to shortcuts
+    print("Welcome to VecchioGPT!")
+    print("Mapped shortcuts and prompts:")
+    print("CTRL+SHIFT+K: calls the fuzzy prompt selector GUI")
+    for i in range(10):
+        fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(i) + ".json")
+        data = functions.read_json_file(fn)
+        print("CTRL+SHIFT+" + str(i) + ": " + data['promptName'])
+    print("=============================================")
+    print("")
+
     q = queue.Queue()
     print(wait_message)
     keyboard.add_hotkey("ctrl+shift+1", lambda: launch_numeral_prompt(1))

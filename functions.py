@@ -56,6 +56,8 @@ def chat_with_gpt(file_name):
 
     ret = response["choices"][0]["message"]["content"]
     print("Answer: " + ret)
+    print("=============================================")
+    print("")
     return ret
 
 
