@@ -1,0 +1,9 @@
+{
+    "promptName": "Summarize in one sentence",
+    "description": "Summarizes § in one sentence",
+    "author": "Neeqstock",
+    "systemMessage": "Answer by summarizing my text inputs in just one short sentence. The sentence should be in the same language as the input.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}

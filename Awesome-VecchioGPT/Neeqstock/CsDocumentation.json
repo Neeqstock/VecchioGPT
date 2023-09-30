@@ -1,0 +1,8 @@
+{
+    "promptName": "C# documentation",
+    "description": "Generates documentation for § C# code",
+    "systemMessage": "Generate C# documentation for the provided code (///). Answer only with the documentation, without providing any other answer in natural language.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}
