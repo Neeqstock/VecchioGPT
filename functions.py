@@ -47,7 +47,7 @@ def chat_with_gpt(file_name):
 
     # Print prompt name
     print()
-    print('"' + colored(settings["promptName"], "yellow") + '" on input:')
+    print('"' + '\033[1m' + colored(settings["promptName"], "yellow") + '\033[0m' + '" on input:')
     print(user_input)
 
     # Create a dataset using GPT
@@ -59,7 +59,7 @@ def chat_with_gpt(file_name):
 
     ret = response["choices"][0]["message"]["content"]
     print("")
-    print(colored("Answer: ", "green"))
+    print(colored('\033[1m' + "Answer" + '\033[0m', "green")  + ":")
     print(ret)
     print("")
     print("=============================================")

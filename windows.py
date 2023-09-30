@@ -24,7 +24,7 @@ def launch_gui_prompt():
     print(wait_message)
 
 def print_intro_console():
-    print("Welcome to VecchioGPT!")
+    print('\033[1m' + "Welcome to VecchioGPT!" + '\033[0m')
     print("")
     print("Mapped shortcuts and prompts:")
     print("")
