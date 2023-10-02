@@ -1,12 +1,11 @@
 # VecchioGPT
  _System-wide GPT prompts on your clipboard! Ghe provo però vecchio bel casino vero? Sisi, si_
 
-VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard.
-It's cross-platform, and compatible with Windows and Linux systems.
+VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard. It is cross-platform and compatible with both Windows and Linux systems.
 
 ## OpenAI API
 
-VecchioGPT runs on OpenAI API, so an OpenAI account and an [OpenAI API key](https://platform.openai.com/account/api-keys) is required. Differently from the [web version of ChatGPT](https://chat.openai.com/), which runs on monthly subscriptions, API access is paid by usage, at very convenient prices.
+VecchioGPT runs on the OpenAI API, which means that you need to have an OpenAI account and an [OpenAI API key](https://platform.openai.com/account/api-keys). Unlike the web version of ChatGPT, which operates on a monthly subscription basis, API access is billed based on usage at affordable prices.
 
 ## Features
 - Clipboard Integration: Easily generate prompts using text copied to the system clipboard.
@@ -67,8 +66,9 @@ CTRL+SHIFT+-: change the model in use, between gpt-3.5-turbo, gpt-4, or prompt_d
 
 ## Making new custom prompts
 
-Custom prompts are file stored inside the _prompts_ folder. You will find a collection of custom prompts inside the _Awesome-VecchioGPT_ folder, which you can simply move in the prompts folder.
-New prompts are easy to make: just copy any prompt file and edit the fields. Those are:
+Custom prompts are files stored inside the _prompts_ folder. You will find a collection of custom prompts inside the _Awesome-VecchioGPT_ folder, which you can simply move to the prompts folder.
+Creating new prompts is easy: just copy any prompt file and edit the fields. The fields to edit are:
+
 - **promptName**: name of the prompt which will be shown in the GUI;
 - **language**: type of programming or markup language involved. Specify "Text" if the prompt works on plain text;
 - **description**: a detailed description of the effect of the prompt;
