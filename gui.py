@@ -33,6 +33,14 @@ def on_search(event):
             listbox.insert(tk.END, match)
         selected_index = -1  # Reset selected index
 
+def on_tab(event):
+    if listbox.size() > 0:
+        global selected_index
+        listbox.focus_set()
+        listbox.selection_clear(0, tk.END)
+        listbox.selection_set(selected_index)
+        listbox.see(selected_index)  # Scroll to the selected index
+
 def on_select(event):
     if listbox.curselection():
         global selected_index
@@ -48,12 +56,6 @@ def on_select(event):
         global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
         pyperclip.copy(global_response)
         functions.play_sound(functions.soundCompleted)
-
-def on_tab(event):
-    if listbox.size() > 0:
-        listbox.focus_set()
-        listbox.selection_clear(0, tk.END)
-        listbox.selection_set(selected_index)
 
 def on_enter(event):
     if selected_index >= 0:
@@ -99,6 +101,11 @@ for filename in os.listdir(promptsDirectoryName):
 root = tk.Tk()
 root.title("VecchioGPT")
 
+# Import Montserrat font
+from tkinter import font as tkfont
+montserrat_font = tkfont.nametofont("TkDefaultFont")
+montserrat_font.configure(family="Montserrat")
+
 # Apply a themed style for a modern look
 style = ttk.Style()
 style.theme_use("clam")
@@ -120,18 +127,19 @@ label = tk.Label(root, image=photo)
 label.pack()
 
 # Create and set the label
-# label = ttk.Label(root, text="VecchioGPT", font=("Helvetica", 14))
+# label = ttk.Label(root, text="VecchioGPT", font=("Montserrat", 14))
 # label.pack(pady=10)
 
-# Create and set the entry widget
-entry = ttk.Entry(root, width=70, font=("Helvetica", 12))
+# Create and set the entry widget with an adjusted width
+entry = ttk.Entry(root, width=80, font=("Montserrat", 12))
 entry.pack(pady=5)
 entry.bind("<KeyRelease>", on_search)
 entry.bind("<Tab>", on_tab)
 entry.focus_set()  # Set focus on the input text box
 
-# Create and set the listbox
-listbox = tk.Listbox(root, selectmode=tk.SINGLE, height=5, width=70, font=("Helvetica", 12))
+# Create and set the listbox with an adjusted width and borderless selection
+listbox = tk.Listbox(root, selectmode=tk.SINGLE, height=5, width=80,
+                     font=("Montserrat", 12), bd=0, highlightthickness=0)
 listbox.pack(pady=5)
 listbox.bind("<Return>", on_enter)
 listbox.bind("<Up>", on_up_arrow)
