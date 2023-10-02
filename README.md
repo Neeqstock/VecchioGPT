@@ -48,10 +48,15 @@ python3 gui.py
 - Run daemon.py (you can reduce to icon the script)
 - Select some text, and press CTRL+C to put it into clipboard
 - Press any of the defined keyboard shortcuts
+- Two audible pings will advise you when the computation is started, and when the answer is complete and ready.
+- When the answer is ready, it will be automatically copied inside the clipboard. Use CTRL+V to paste it anywhere.
 
-**Shortcuts:**
+**Keyboard shortcuts:**
+
 CTRL+SHIFT+(0-9): run any of the custom prompts associated to numeral keys
+
 CTRL+SHIFT+*: open the prompt selection GUI
+
 CTRL+SHIFT+-: change the model in use, between gpt-3.5-turbo, gpt-4, or prompt_default. This one means the model suggested in the custom prompt file will be used.
 
 ### Making new prompts
