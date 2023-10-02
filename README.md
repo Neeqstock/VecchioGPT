@@ -2,6 +2,7 @@
  _System-wide GPT prompts on your clipboard! Ghe provo però vecchio bel casino vero? Sisi, si_
 
 VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard.
+It's cross-platform, and compatible with Windows and Linux systems.
 
 ## Features
 - Clipboard Integration: Easily generate prompts using text copied to the system clipboard.
@@ -45,11 +46,12 @@ python3 gui.py
 
 ### Method 2: background daemon
 
-- Run daemon.py (you can reduce to icon the script)
+- Run _daemon.py_ (you can reduce to icon the script console)
 - Select some text, and press CTRL+C to put it into clipboard
 - Press any of the defined keyboard shortcuts
-- Two audible pings will advise you when the computation is started, and when the answer is complete and ready.
-- When the answer is ready, it will be automatically copied inside the clipboard. Use CTRL+V to paste it anywhere.
+- Two audible pings will advise you when the computation is started, and when the answer is complete and ready
+- When the answer is ready, it will be automatically copied inside the clipboard. Use CTRL+V to paste it anywhere
+- Prompts, input and answers will also be printed on the console
 
 **Keyboard shortcuts:**
 
@@ -59,7 +61,7 @@ CTRL+SHIFT+*: open the prompt selection GUI
 
 CTRL+SHIFT+-: change the model in use, between gpt-3.5-turbo, gpt-4, or prompt_default. This one means the model suggested in the custom prompt file will be used.
 
-### Making new prompts
+## Making new custom prompts
 
 Custom prompts are file stored inside the _prompts_ folder. You will find a collection of custom prompts inside the _Awesome-VecchioGPT_ folder, which you can simply move in the prompts folder.
 New prompts are easy to make: just copy any prompt file and edit the fields. Those are:
@@ -72,7 +74,9 @@ New prompts are easy to make: just copy any prompt file and edit the fields. Tho
 - **temperature**: form 0.1 to 1.0, define how much "creative" will the answer be. 0.1 is the creativity extreme, while 1.0 means every answer will be the same, provided the same prompt contents;
 - **prompt**: the effective prompt that will be passed to the GPT model. Use "§" character to specify where the clipboard contents will be merged inside the prompt: it will be substituted with the contents of the clipboard.
 
-Files named _(0-9).json_ must be present in the _prompts_ folder, and refer to the prompts that will be called using the CTRL+SHIFT+(0-9) keyboard shortcut combination, using the background daemon.
+Files named _(0-9).json_ must be present in the _prompts_ folder, and refer to the prompts that will be called using the CTRL+SHIFT+(0-9) keyboard shortcut combination, using the background daemon. Those will be also accessible through the prompt picker GUI.
+
+It's greatly advised not to create two prompts with the same _promptName_.
 
 ## Dependencies
 
