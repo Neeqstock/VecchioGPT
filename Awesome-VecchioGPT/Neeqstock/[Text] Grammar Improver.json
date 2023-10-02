@@ -1,0 +1,10 @@
+{
+    "promptName": "Grammar Improver",
+    "language": "Text",
+    "description": "Fixes the grammar and rewrites the § text, while trying to keep any included syntax.",
+    "author": "Neeqstock",
+    "systemMessage": "You're given a badly written text as input. Rewrite the input fixing the grammar and making it written in correct english.Try to keep any included syntax intact in your output if you find any, being it markdown, latex, html, or syntax from any other language.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}
