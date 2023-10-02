@@ -7,15 +7,30 @@ import json
 from termcolor import colored
 
 global global_response
-models = ["gpt-3.5-turbo", "gpt-4", ""]
-selected_model = 1
+
+# Settings
+SETTINGS_FILENAME = "settings.json"
+NO_MODEL = "prompt_default"
+GPT_MODELS = ["gpt-3.5-turbo", "gpt-4", NO_MODEL]
+selected_model = GPT_MODELS[0]
+
+def next_model():
+    index = GPT_MODELS.index(selected_model)
+
+def write_settings():
+    with open(SETTINGS_FILENAME, "w") as file:
+        json.dump(selected_model, file)
+
+def read_selected_model_from_json():
+    with open(SETTINGS_FILENAME, "r") as file:
+        selectedModel = json.load(file)
 
 # Sounds
-soundStart = "start.wav"
-soundCompleted = "completed.wav"
+SOUND_START = "start.wav"
+SOUND_COMPLETED = "completed.wav"
 
 # TestSwitch (debug)
-testSwitch = False
+TEST_SWITCH = False
 
 # OpenAI key
 def read_api_key(file_path):
@@ -43,7 +58,7 @@ def chat_with_gpt(file_name):
     # Replaces the § sign with the contents of the clipboard
     mergedPrompt = settings["prompt"].replace('§', user_input)
 
-    if(testSwitch == True):
+    if(TEST_SWITCH == True):
         print(settings)
 
     # Print prompt name
@@ -55,7 +70,7 @@ def chat_with_gpt(file_name):
     response = openai.ChatCompletion.create(model=settings["gptModel"],
                                             messages=[{"role": "system", "content": settings["systemMessage"]},
                                             {"role": "user", "content": mergedPrompt}])
-    if(testSwitch == True):
+    if(TEST_SWITCH == True):
         print(response)
 
     ret = response["choices"][0]["message"]["content"]
