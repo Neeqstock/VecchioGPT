@@ -1,7 +1,7 @@
 # VecchioGPT
  _System-wide GPT prompts on your clipboard! Ghe provo però vecchio bel casino vero? Sisi, si_
 
-VecchioGPT is a Python application that allows users to apply custom GPT prompts using text from the system clipboard.
+VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard.
 
 ## Features
 - Clipboard Integration: Easily generate prompts using text copied to the system clipboard.
