@@ -42,12 +42,12 @@ def on_select(event):
         entry.delete(0, tk.END)
         entry.insert(0, selected_item)
         global global_response
-        functions.play_sound(functions.soundStart)
+        functions.play_sound(functions.SOUND_START)
         tempPromptName = selected_item  # Store the selected item so it can destroy the root window
         root.destroy()
         global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
         pyperclip.copy(global_response)
-        functions.play_sound(functions.soundCompleted)
+        functions.play_sound(functions.SOUND_COMPLETED)
 
 def on_tab(event):
     if listbox.size() > 0:

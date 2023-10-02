@@ -163,3 +163,4 @@ cython_debug/
 #.idea/
 VecchioGPT.bat
 openai_key.txt
+*.pyc
