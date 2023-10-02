@@ -9,7 +9,7 @@ from termcolor import colored
 global global_response
 
 # Settings ===============================================
-SETTINGS_FILENAME = "settings.json"
+SETTINGS_FILENAME = os.path.join(os.path.dirname(__file__), 'settings.json')
 NO_MODEL = "file_specific"
 GPT_MODELS = ["gpt-3.5-turbo", "gpt-4", NO_MODEL]
 
