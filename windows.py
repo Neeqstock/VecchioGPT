@@ -31,9 +31,9 @@ def print_intro_console():
     for i in range(10):
         fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(i) + ".json")
         data = functions.read_json_file(fn)
-        print("CTRL+SHIFT+" + str(i) + ": " + data['promptName'])
+        print("CTRL + SHIFT + " + str(i) + ": " + data['promptName'])
     print("")
-    print("CTRL+SHIFT+K: calls the fuzzy prompt selector GUI")
+    print("CTRL + SHIFT + *: calls the fuzzy prompt selector GUI")
     print("")
     print("=============================================")
     print("")
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     keyboard.add_hotkey("ctrl+shift+8", lambda: launch_numeral_prompt(8))
     keyboard.add_hotkey("ctrl+shift+9", lambda: launch_numeral_prompt(9))
     keyboard.add_hotkey("ctrl+shift+0", lambda: launch_numeral_prompt(0))
-    keyboard.add_hotkey("ctrl+shift+k", launch_gui_prompt)
+    keyboard.add_hotkey("ctrl+shift+*", launch_gui_prompt)
     keyboard.wait()
 
 

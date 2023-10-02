@@ -1,5 +1,6 @@
 {
     "promptName": "Explain this",
+    "language": "Text",
     "description": "Explains §",
     "author": "Neeqstock",
     "systemMessage": "You're an helpful assistant. You explain things to me.",

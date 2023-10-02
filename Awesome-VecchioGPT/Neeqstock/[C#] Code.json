@@ -1,7 +1,7 @@
 {
-    "promptName": "C# code",
+    "promptName": "Code",
+    "language": "C#",
     "description": "Generates the C# code requested in § (e.g. from a comment)",
-    "author": "Neeqstock",
     "systemMessage": "Generate the requested C# code. Answer only with the code, without providing any other answer in natural language.",
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,

@@ -6,8 +6,9 @@ import simpleaudio as sa
 import json
 from termcolor import colored
 
-
 global global_response
+models = ["gpt-3.5-turbo", "gpt-4", ""]
+selected_model = 1
 
 # Sounds
 soundStart = "start.wav"

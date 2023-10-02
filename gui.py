@@ -8,6 +8,7 @@ import json
 import functions
 import pyperclip
 import sv_ttk
+from PIL import ImageTk, Image
 
 # Directory containing the prompts
 promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
@@ -86,10 +87,12 @@ for filename in os.listdir(promptsDirectoryName):
         with open(f'{promptsDirectoryName}/{filename}') as f:
             # Load the JSON data from the file
             data = json.load(f)
+            # Strcat with prompt language
+            promptString = "[" + data['language'] + "] " + data['promptName']
             # Append the 'promptName' and filename to the dictionary
-            promptsDictionary[data['promptName']] = filename
+            promptsDictionary[promptString] = filename
             # Append the 'promptName' to the list to be used by the GUI
-            possible_prompts.append(data['promptName'])
+            possible_prompts.append(promptString)
 
 # Define the window ====================
 # Create the main window
@@ -105,19 +108,30 @@ style.configure("TLabel", background="#3498db", foreground="white", padding=10)
 style.configure("TEntry", background="#ecf0f1", padding=10)
 style.configure("TListbox", background="#ecf0f1", padding=10)
 
+# VECCHIOGPT IMAGE ==========
+# Open VecchioGPT image using PIL
+image = Image.open("VecchioGPT.png")
+image = image.resize((80, 80))
+# Convert the image to Tkinter PhotoImage
+photo = ImageTk.PhotoImage(image)
+# Create a label and set the image
+label = tk.Label(root, image=photo)
+# Pack the label to show it in the window
+label.pack()
+
 # Create and set the label
-label = ttk.Label(root, text="VecchioGPT", font=("Helvetica", 14))
-label.pack(pady=10)
+# label = ttk.Label(root, text="VecchioGPT", font=("Helvetica", 14))
+# label.pack(pady=10)
 
 # Create and set the entry widget
-entry = ttk.Entry(root, width=30, font=("Helvetica", 12))
+entry = ttk.Entry(root, width=70, font=("Helvetica", 12))
 entry.pack(pady=5)
 entry.bind("<KeyRelease>", on_search)
 entry.bind("<Tab>", on_tab)
 entry.focus_set()  # Set focus on the input text box
 
 # Create and set the listbox
-listbox = tk.Listbox(root, selectmode=tk.SINGLE, height=5, font=("Helvetica", 12))
+listbox = tk.Listbox(root, selectmode=tk.SINGLE, height=5, width=70, font=("Helvetica", 12))
 listbox.pack(pady=5)
 listbox.bind("<Return>", on_enter)
 listbox.bind("<Up>", on_up_arrow)

@@ -1,5 +1,8 @@
 {
     "promptName": "Custom prompt 5",
+    "language": "",
+    "description": "",
+    "author": "",
     "systemMessage": "You're an helpful assistant. You can help me by answering my questions.",
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,
