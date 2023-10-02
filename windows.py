@@ -26,6 +26,8 @@ def launch_gui_prompt():
 def print_intro_console():
     print('\033[1m' + "Welcome to VecchioGPT!" + '\033[0m')
     print("")
+    print("Selected model: " + functions.read_model())
+    print("")
     print("Mapped shortcuts and prompts:")
     print("")
     for i in range(10):
@@ -53,6 +55,7 @@ if __name__ == "__main__":
     keyboard.add_hotkey("ctrl+shift+9", lambda: launch_numeral_prompt(9))
     keyboard.add_hotkey("ctrl+shift+0", lambda: launch_numeral_prompt(0))
     keyboard.add_hotkey("ctrl+shift+*", launch_gui_prompt)
+    keyboard.add_hotkey("ctrl+shift+-", functions.next_model)
     keyboard.wait()
 
 

@@ -8,29 +8,40 @@ from termcolor import colored
 
 global global_response
 
-# Settings
+# Settings ===============================================
 SETTINGS_FILENAME = "settings.json"
-NO_MODEL = "prompt_default"
+NO_MODEL = "file_specific"
 GPT_MODELS = ["gpt-3.5-turbo", "gpt-4", NO_MODEL]
-selected_model = GPT_MODELS[0]
+
+# Model settings
+def read_model():
+    with open(SETTINGS_FILENAME, "r") as file:
+        return json.load(file)['model']
+
+def write_model(new_model):
+    with open(SETTINGS_FILENAME, 'r') as f:
+        data = json.load(f)
+        data["model"] = new_model
+
+    with open(SETTINGS_FILENAME, 'w') as f:
+        json.dump(data, f, indent=4)
 
 def next_model():
-    index = GPT_MODELS.index(selected_model)
+    selected_model = read_model()
+    i = GPT_MODELS.index(selected_model)
+    selected_model = ""
+    if i + 1 < len(GPT_MODELS):
+        selected_model = GPT_MODELS[i + 1]
+    else:
+        selected_model = GPT_MODELS[0]
+    write_model(selected_model)
+    print("Model changed to: " + selected_model)
 
-def write_settings():
-    with open(SETTINGS_FILENAME, "w") as file:
-        json.dump(selected_model, file)
-
-def read_selected_model_from_json():
-    with open(SETTINGS_FILENAME, "r") as file:
-        selectedModel = json.load(file)
+# ===========================================================
 
 # Sounds
 SOUND_START = "start.wav"
 SOUND_COMPLETED = "completed.wav"
-
-# TestSwitch (debug)
-TEST_SWITCH = False
 
 # OpenAI key
 def read_api_key(file_path):
@@ -54,24 +65,23 @@ def chat_with_gpt(file_name):
     # Seeks the file name
     fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
     # Loads the settings from fn file name
-    settings = read_json_file(fn)
+    promptJson = read_json_file(fn)
     # Replaces the § sign with the contents of the clipboard
-    mergedPrompt = settings["prompt"].replace('§', user_input)
-
-    if(TEST_SWITCH == True):
-        print(settings)
-
-    # Print prompt name
-    print()
-    print('"' + '\033[1m' + colored(settings["promptName"], "yellow") + '\033[0m' + '" on input:')
-    print(user_input)
+    mergedPrompt = promptJson["prompt"].replace('§', user_input)
 
     # Create a dataset using GPT
-    response = openai.ChatCompletion.create(model=settings["gptModel"],
-                                            messages=[{"role": "system", "content": settings["systemMessage"]},
+    selected_model = read_model()
+    if selected_model == NO_MODEL:
+        selected_model = promptJson["gptModel"]
+
+    # Print prompt name
+    print("")
+    print('"' + '\033[1m' + colored(promptJson["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
+    print(user_input)
+
+    response = openai.ChatCompletion.create(model=selected_model,
+                                            messages=[{"role": "system", "content": promptJson["systemMessage"]},
                                             {"role": "user", "content": mergedPrompt}])
-    if(TEST_SWITCH == True):
-        print(response)
 
     ret = response["choices"][0]["message"]["content"]
     print("")
