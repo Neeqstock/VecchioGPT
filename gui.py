@@ -110,7 +110,7 @@ style.configure("TListbox", background="#ecf0f1", padding=10)
 
 # VECCHIOGPT IMAGE ==========
 # Open VecchioGPT image using PIL
-image = Image.open("VecchioGPT.png")
+image = Image.open(os.path.join(os.path.dirname(__file__), "VecchioGPT.png"))
 image = image.resize((80, 80))
 # Convert the image to Tkinter PhotoImage
 photo = ImageTk.PhotoImage(image)

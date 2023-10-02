@@ -1,1 +1,1 @@
-OPENAI_API_KEY=your-api-key-here
+OPENAI_API_KEY=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
