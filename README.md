@@ -46,13 +46,11 @@ Dependencies
 - sv-ttk
 - fuzzywuzzy
 - pyperclip
-- tkinter
 - PIL (Pillow)
 - termcolor
 - simpleaudio
 - openai
 - pynput
-- platform
 
 Note: The listed dependencies are not exhaustive; make sure you have a Python environment with the necessary built-in modules.
 
