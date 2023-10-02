@@ -4,6 +4,10 @@
 VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard.
 It's cross-platform, and compatible with Windows and Linux systems.
 
+## OpenAI API
+
+VecchioGPT runs on OpenAI API, so an OpenAI account and an [OpenAI API key](https://platform.openai.com/account/api-keys) is required. Differently from the [web version of ChatGPT](https://chat.openai.com/), which runs on monthly subscriptions, API access is paid by usage, at very convenient prices.
+
 ## Features
 - Clipboard Integration: Easily generate prompts using text copied to the system clipboard.
 - Workflow Efficiency: Use a designated hotkey to call VecchioGPT, and the user-defined prompt is executed, with the output conveniently pasted into the clipboard.
