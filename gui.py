@@ -109,7 +109,10 @@ def display_info():
                     data = json.load(f)
                     # Decode Unicode escape sequences to display proper Unicode characters
                     decoded_info = codecs.decode(json.dumps(data, indent=2), 'unicode_escape')
-                    info_text = f"[{data['language']}] {data['promptName']} Info:\n\n{decoded_info}"
+                    
+                    # Show only prompt description
+                    info_text = data['description']
+                    # info_text = f"[{data['language']}] {data['promptName']} Info:\n\n{decoded_info}"
                     info_label.configure(text=info_text)
             except FileNotFoundError:
                 info_label.configure(text=f"Info not available for {selected_item}")
