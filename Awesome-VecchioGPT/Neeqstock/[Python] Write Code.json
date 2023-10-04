@@ -1,5 +1,5 @@
 {
-    "promptName": "Code",
+    "promptName": "Write Code",
     "language": "Python",
     "description": "Generates the Python code requested in § (e.g. from a comment)",
     "systemMessage": "Generate the requested Python code. Answer only with the code, without providing any other answer in natural language.",

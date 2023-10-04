@@ -1,0 +1,10 @@
+{
+    "promptName": "Gibberish adder",
+    "language": "Text",
+    "description": "Changes some words in § into gibberish, or adds some. For fun.",
+    "author": "Neeqstock",
+    "systemMessage": "Transform the input text by changing some words into absolute random gibberish, or add some funny gibberish between the words. The input text must still be recognizable, but bloated of gibberish.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}

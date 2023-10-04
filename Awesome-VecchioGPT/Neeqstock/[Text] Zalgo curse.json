@@ -1,0 +1,10 @@
+{
+    "promptName": "Zalgo curse",
+    "language": "Text",
+    "description": "Applies the Zalgo curse to §. For fun.",
+    "author": "Neeqstock",
+    "systemMessage": "Transform the input text into Zalgo text, making it cursed.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.8,
+    "prompt": "§"
+}

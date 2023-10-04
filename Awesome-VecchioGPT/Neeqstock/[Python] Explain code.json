@@ -1,0 +1,9 @@
+{
+    "promptName": "Explain Code",
+    "language": "Python",
+    "description": "Explains the § Python code.",
+    "systemMessage": "Summarize the provided Python code at a high level (including goal and purpose) with an emphasis on its key functionality. Use the style of a documentation article. Omit any links.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}
