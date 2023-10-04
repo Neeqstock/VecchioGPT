@@ -98,11 +98,21 @@ def on_down_arrow(event):
         listbox.activate(selected_index)
         display_info()
 
+def clear_notebook(notebook):
+    for tab in notebook.winfo_children():
+        tab.destroy()
+    for i in range(notebook.index("end") - 1, -1, -1):
+        notebook.forget(i)
+
+                        
 def display_info():
     global selected_index
     if selected_index >= 0:
         selected_item = listbox.get(selected_index)
         filename = promptsDictionary.get(selected_item)
+        # Clear notebook
+        clear_notebook(notebook)
+
         if filename:
             try:
                 with open(os.path.join(promptsDirectoryName, filename)) as f:
@@ -114,6 +124,25 @@ def display_info():
                     info_text = data['description']
                     # info_text = f"[{data['language']}] {data['promptName']} Info:\n\n{decoded_info}"
                     info_label.configure(text=info_text)
+
+                    additional_params = data.get("additionalParams")
+
+                    if additional_params:
+                        # Create tabs for each key in "additionalParams"
+                        # Iterate through each key-value pair in "additionalParams"
+                        for param in additional_params:
+                            key = param.get("key")
+                            value = param.get("value")
+
+                            # Create a new tab
+                            tab = ttk.Frame(notebook)
+                            notebook.add(tab, text=key)
+
+                            # Create an InputBox in the tab
+                            input_box = ttk.Entry(tab, width=80, font=("Montserrat", 12))
+                            input_box.insert(0, value)  # Set default text
+                            input_box.pack(pady=5)
+
             except FileNotFoundError:
                 info_label.configure(text=f"Info not available for {selected_item}")
         else:
@@ -196,6 +225,10 @@ sv_ttk.set_theme("dark")
 # Create and set the InfoBox label with an adjusted width and initial text
 info_label = ttk.Label(root, text="", font=("Montserrat", 12), wraplength=800)
 info_label.pack(pady=5)
+
+# Create a Notebook widget
+notebook = ttk.Notebook(root)
+notebook.pack(pady=5)
 
 # Main entry point ===================================
 if __name__ == "__main__":
