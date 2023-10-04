@@ -104,6 +104,8 @@ def clear_notebook(notebook):
     for i in range(notebook.index("end") - 1, -1, -1):
         notebook.forget(i)
 
+
+
                         
 def display_info():
     global selected_index
@@ -177,7 +179,7 @@ from tkinter import font as tkfont
 montserrat_font = tkfont.nametofont("TkDefaultFont")
 montserrat_font.configure(family="Montserrat")
 
-# Apply a themed style for a modern look
+# Apply a themed style for a modern looentry.pack(fill="x")k
 style = ttk.Style()
 style.theme_use("clam")
 
@@ -197,16 +199,14 @@ label = tk.Label(root, image=photo)
 # Pack the label to show it in the window
 label.pack()
 
-# Create and set the label
-# label = ttk.Label(root, text="VecchioGPT", font=("Montserrat", 14))
-# label.pack(pady=10)
-
-# Create and set the entry widget with an adjusted width
 entry = ttk.Entry(root, width=80, font=("Montserrat", 12))
 entry.pack(pady=5)
 entry.bind("<KeyRelease>", on_search)
 entry.bind("<Tab>", on_tab)
 entry.focus_set()  # Set focus on the input text box
+# Add space between Notebooks and Textbox
+entry.pack(pady=(5, 5))
+
 
 # Create and set the listbox with an adjusted width and borderless selection
 listbox = tk.Listbox(root, selectmode=tk.SINGLE, height=5, width=80,
@@ -216,6 +216,9 @@ listbox.bind("<Return>", on_enter)
 listbox.bind("<Up>", on_up_arrow)
 listbox.bind("<Down>", on_down_arrow)
 
+# Add space between Textbox and listbox
+listbox.pack(pady=(5, 5))
+
 # Populate the listbox with possible prompts
 for prompt in possible_prompts:
     listbox.insert(tk.END, prompt)
@@ -224,7 +227,7 @@ sv_ttk.set_theme("dark")
 
 # Create and set the InfoBox label with an adjusted width and initial text
 info_label = ttk.Label(root, text="", font=("Montserrat", 12), wraplength=800)
-info_label.pack(pady=5)
+info_label.pack(pady=(5, 20))
 
 # Create a Notebook widget
 notebook = ttk.Notebook(root)
