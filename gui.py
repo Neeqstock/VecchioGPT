@@ -153,6 +153,7 @@ def display_info():
 
                             # Create an InputBox in the tab
                             input_box = ttk.Entry(tab, width=80, font=("Montserrat", 12))
+                            input_box.bind("<Return>", on_enter)
                             input_box.insert(0, value)  # Set default text
                             input_box.pack(pady=5)
 
