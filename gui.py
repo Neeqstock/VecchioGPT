@@ -16,6 +16,7 @@ promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
 promptsDictionary = {}
 possible_prompts = []  # List of possible prompts
 selected_index = -1  # Currently selected item index
+selected_item = -1
 tempPromptName = ""
 
 def bring_to_front(window):
@@ -45,8 +46,8 @@ def on_tab(event):
 def on_select(event):
     if listbox.curselection():
         global selected_index
-        selected_index = listbox.curselection()[0]
-        selected_item = listbox.get(selected_index)
+        global selected_item
+        
         print(f"Selected Prompt: {selected_item}")
         entry.delete(0, tk.END)
         entry.insert(0, selected_item)
@@ -64,12 +65,15 @@ def on_enter(event):
 
 def on_up_arrow(event):
     global selected_index
+    global selected_item
     if entry == root.focus_get():
         if listbox.size() > 0:
             selected_index = 0
             listbox.selection_clear(0, tk.END)
             listbox.selection_set(selected_index)
             listbox.activate(selected_index)
+            selected_index = listbox.curselection()[0]
+            selected_item = listbox.get(selected_index)
             display_info()
         else:
             selected_index = -1
@@ -78,16 +82,21 @@ def on_up_arrow(event):
         listbox.selection_clear(0, tk.END)
         listbox.selection_set(selected_index)
         listbox.activate(selected_index)
+        selected_index = listbox.curselection()[0]
+        selected_item = listbox.get(selected_index)
         display_info()
 
 def on_down_arrow(event):
     global selected_index
+    global selected_item
     if entry == root.focus_get():
         if listbox.size() > 0:
             selected_index = 0
             listbox.selection_clear(0, tk.END)
             listbox.selection_set(selected_index)
             listbox.activate(selected_index)
+            selected_index = listbox.curselection()[0]
+            selected_item = listbox.get(selected_index)
             display_info()
         else:
             selected_index = -1
@@ -96,6 +105,8 @@ def on_down_arrow(event):
         listbox.selection_clear(0, tk.END)
         listbox.selection_set(selected_index)
         listbox.activate(selected_index)
+        selected_index = listbox.curselection()[0]
+        selected_item = listbox.get(selected_index)
         display_info()
 
 def clear_notebook(notebook):
