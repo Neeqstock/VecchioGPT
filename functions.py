@@ -12,6 +12,7 @@ global global_response
 SETTINGS_FILENAME = os.path.join(os.path.dirname(__file__), 'settings.json')
 NO_MODEL = "file_specific"
 GPT_MODELS = ["gpt-3.5-turbo", "gpt-4", NO_MODEL]
+DEFAULT_ROLE = "system"
 
 # Model settings
 def read_model():
@@ -61,26 +62,41 @@ def read_json_file(file_path):
 
 def chat_with_gpt(file_name):
     # Get string from clipboard
-    user_input = pyperclip.paste()
+    clipboardContents = pyperclip.paste()
     # Seeks the file name
     fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
     # Loads the settings from fn file name
-    promptJson = read_json_file(fn)
-    # Replaces the § sign with the contents of the clipboard
-    mergedPrompt = promptJson["prompt"].replace('§', user_input)
+    jsonFile = read_json_file(fn)
+
+    mergedSystemMessage = jsonFile["systemMessage"]
+    mergedPrompt = jsonFile["prompt"]
+
+    # Merging operation: Replace all the § and §{}
+    # additional params first
+    additional_params = jsonFile.get("additionalParams")
+    if additional_params:
+        for param in additional_params:
+            key = param.get("key")
+            value = param.get("value")
+            mergedSystemMessage = mergedSystemMessage.replace("§{" + key + "}", value)
+            mergedPrompt = mergedPrompt.replace("§{" + key + "}", value)
+    
+    # then clipboard (to avoid override-replacing of §)
+    mergedSystemMessage = mergedSystemMessage.replace("§", clipboardContents)
+    mergedPrompt = mergedPrompt.replace('§', clipboardContents)
 
     # Create a dataset using GPT
     selected_model = read_model()
     if selected_model == NO_MODEL:
-        selected_model = promptJson["gptModel"]
+        selected_model = jsonFile["gptModel"]
 
     # Print prompt name
     print("")
-    print('"' + '\033[1m' + colored(promptJson["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
-    print(user_input)
+    print('"' + '\033[1m' + colored(jsonFile["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
+    print(clipboardContents)
 
     response = openai.ChatCompletion.create(model=selected_model,
-                                            messages=[{"role": "system", "content": promptJson["systemMessage"]},
+                                            messages=[{"role": "system", "content": mergedSystemMessage},
                                             {"role": "user", "content": mergedPrompt}])
 
     ret = response["choices"][0]["message"]["content"]
