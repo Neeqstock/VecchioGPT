@@ -9,6 +9,7 @@ import functions
 import pyperclip
 import sv_ttk
 from PIL import ImageTk, Image
+import codecs
 
 # Directory containing the prompts
 promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
@@ -63,19 +64,57 @@ def on_enter(event):
 
 def on_up_arrow(event):
     global selected_index
-    if selected_index > 0:
+    if entry == root.focus_get():
+        if listbox.size() > 0:
+            selected_index = 0
+            listbox.selection_clear(0, tk.END)
+            listbox.selection_set(selected_index)
+            listbox.activate(selected_index)
+            display_info()
+        else:
+            selected_index = -1
+    elif selected_index > 0:
         selected_index -= 1
         listbox.selection_clear(0, tk.END)
         listbox.selection_set(selected_index)
         listbox.activate(selected_index)
+        display_info()
 
 def on_down_arrow(event):
     global selected_index
-    if selected_index < listbox.size() - 1:
+    if entry == root.focus_get():
+        if listbox.size() > 0:
+            selected_index = 0
+            listbox.selection_clear(0, tk.END)
+            listbox.selection_set(selected_index)
+            listbox.activate(selected_index)
+            display_info()
+        else:
+            selected_index = -1
+    elif selected_index < listbox.size() - 1:
         selected_index += 1
         listbox.selection_clear(0, tk.END)
         listbox.selection_set(selected_index)
         listbox.activate(selected_index)
+        display_info()
+
+def display_info():
+    global selected_index
+    if selected_index >= 0:
+        selected_item = listbox.get(selected_index)
+        filename = promptsDictionary.get(selected_item)
+        if filename:
+            try:
+                with open(os.path.join(promptsDirectoryName, filename)) as f:
+                    data = json.load(f)
+                    # Decode Unicode escape sequences to display proper Unicode characters
+                    decoded_info = codecs.decode(json.dumps(data, indent=2), 'unicode_escape')
+                    info_text = f"[{data['language']}] {data['promptName']} Info:\n\n{decoded_info}"
+                    info_label.configure(text=info_text)
+            except FileNotFoundError:
+                info_label.configure(text=f"Info not available for {selected_item}")
+        else:
+            info_label.configure(text=f"Info not available for {selected_item}")
 
 def show_window():
     bring_to_front(root)
@@ -150,6 +189,10 @@ for prompt in possible_prompts:
     listbox.insert(tk.END, prompt)
 
 sv_ttk.set_theme("dark")
+
+# Create and set the InfoBox label with an adjusted width and initial text
+info_label = ttk.Label(root, text="", font=("Montserrat", 12), wraplength=800)
+info_label.pack(pady=5)
 
 # Main entry point ===================================
 if __name__ == "__main__":
