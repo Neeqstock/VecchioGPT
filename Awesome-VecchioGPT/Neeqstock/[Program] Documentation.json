@@ -1,16 +1,16 @@
 {
     "promptName": "Documentation",
     "language": "Program",
-    "description": "Generates documentation for § code, in the language specified in the parameters",
+    "description": "Generates documentation for the code in the clipboard, in the language specified in the parameters",
     "author": "Neeqstock",
-    "systemMessage": "Generate §{language} documentation for the provided code. Answer only with the documentation, without providing any other answer in natural language. Include the necessary symbols for §{language} documentation entries. Do not include parts of the code in your answer. Absolutely do not use markdown code blocks or code fences in your answer. Be concise but exhaustive.",
+    "systemMessage": "Generate §{Languagee} documentation for the code which I provide you. The code is written in §{Language}. Answer only with the documentation, without providing any other answer in natural language. Use the correct syntax for §{Language} documentation entries. DO NOT include the code I send you in your answer. Your documentation should be meaningful, and describe what the code does at a high level.",
     "additionalParams": [
         {
-            "key": "language",
+            "key": "Language",
             "value": "C#"
         }
     ],
     "gptModel": "gpt-3.5-turbo",
-    "temperature": 0.2,
+    "temperature": 0.5,
     "prompt": "§"
 }
