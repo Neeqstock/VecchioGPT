@@ -207,8 +207,9 @@ for filename in os.listdir(promptsDirectoryName):
 		with open(f'{promptsDirectoryName}/{filename}', encoding="utf-8") as f:
 			# Load the JSON data from the file
 			data = json.load(f)
-			# Strcat with prompt language
-			promptString = "[" + data['language'] + "] " + data['promptName']
+			# Check if a dictionary `data` has a field `language`. If the field is present, save it into the `language` vaiable
+			language = f"[{data['language']}] " if 'language' in data else ""
+			promptString = language + data['promptName']
 			# Append the 'promptName' and filename to the dictionary
 			promptsDictionary[promptString] = filename
 			# Append the 'promptName' to the list to be used by the GUI
