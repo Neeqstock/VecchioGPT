@@ -12,6 +12,7 @@ from PIL import ImageTk, Image
 import codecs
 
 global data
+global key_entry_pairs
 
 promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts') # Directory containing the prompts
 promptsDictionary = {}
@@ -58,23 +59,23 @@ def overwrite_additionalParams():
 		json.dump(data, file, indent=4, ensure_ascii=False)
 
 def on_select(event):
-    global selected_index
-    global selected_item
+	global selected_index
+	global selected_item
 
 	# Overwrite additional params to set new defaults
-    if len(key_entry_pairs) > 0:
-        overwrite_additionalParams()
-    
-    print(f"Selected Prompt: {selected_item}")
-    entry.delete(0, tk.END)
-    entry.insert(0, selected_item)
-    global global_response
-    functions.play_sound(functions.SOUND_START)
-    tempPromptName = selected_item  # Store the selected item so it can destroy the root window
-    root.destroy()
-    global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
-    pyperclip.copy(global_response)
-    functions.play_sound(functions.SOUND_COMPLETED)
+	if len(key_entry_pairs) > 0:
+		overwrite_additionalParams()
+	
+	print(f"Selected Prompt: {selected_item}")
+	entry.delete(0, tk.END)
+	entry.insert(0, selected_item)
+	global global_response
+	functions.play_sound(functions.SOUND_START)
+	tempPromptName = selected_item  # Store the selected item so it can destroy the root window
+	root.destroy()
+	global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
+	pyperclip.copy(global_response)
+	functions.play_sound(functions.SOUND_COMPLETED)
 
 
 def on_enter(event):
@@ -138,6 +139,24 @@ def clear_notebook(notebook):
 	for i in range(notebook.index("end") - 1, -1, -1):
 		notebook.forget(i)
 
+def create_label_input_pairs(frame, additional_params):
+	key_entry_pairs = {}
+	for param in additional_params:
+		key = param.get("key")
+		value = param.get("value")
+
+		# Create a Label
+		label = ttk.Label(frame, text=key, font=("Montserrat", 12))
+		label.grid(row=len(key_entry_pairs), column=0, sticky=tk.W, padx=10, pady=5)
+
+		# Create an InputBox
+		input_box = ttk.Entry(frame, width=40, font=("Montserrat", 12))
+		input_box.insert(0, value)  # Set default text
+		input_box.grid(row=len(key_entry_pairs), column=1, pady=5)
+
+		key_entry_pairs[key] = input_box
+
+	return key_entry_pairs
 
 def display_info():
 	global selected_index
@@ -145,46 +164,33 @@ def display_info():
 	if selected_index >= 0:
 		selected_item = listbox.get(selected_index)
 		filename = promptsDictionary.get(selected_item)
-		# Clear notebook
-		clear_notebook(notebook)
-		key_entry_pairs.clear()
+		# clear_textboxes(notebook)
+		# key_entry_pairs.clear()
 
 		if filename:
 			try:
 				with open(os.path.join(promptsDirectoryName, filename), encoding="utf-8") as f:
 					data = json.load(f)
-					# Decode Unicode escape sequences to display proper Unicode characters
-					decoded_info = codecs.decode(json.dumps(data, indent=2), 'unicode_escape')
-					
-					# Show only prompt description
 					info_text = data['description']
-					# info_text = f"[{data['language']}] {data['promptName']} Info:\n\n{decoded_info}"
 					info_label.configure(text=info_text)
 
 					additional_params = data.get("additionalParams")
 
 					if additional_params:
-						# Create tabs for each key in "additionalParams"
-						# Iterate through each key-value pair in "additionalParams"
-						for param in additional_params:
-							key = param.get("key")
-							value = param.get("value")
+						# Create a frame for labels and input boxes
+						label_text_frame = ttk.Frame(root)
+						label_text_frame.pack(pady=10)
 
-							# Create a new tab
-							tab = ttk.Frame(notebook)
-							notebook.add(tab, text=key)
+						key_entry_pairs = create_label_input_pairs(label_text_frame, additional_params)
 
-							# Create an InputBox in the tab
-							input_box = ttk.Entry(tab, width=80, font=("Montserrat", 12))
-							input_box.bind("<Return>", on_enter)
-							input_box.insert(0, value)  # Set default text
-							input_box.pack(pady=5)
-							key_entry_pairs[key] = input_box
+						# Store the key_entry_pairs in a global variable for future reference
+						key_entry_pairs[selected_item] = key_entry_pairs
 
 			except FileNotFoundError:
 				info_label.configure(text=f"Info not available for {selected_item}")
 		else:
 			info_label.configure(text=f"Info not available for {selected_item}")
+
 
 def show_window():
 	bring_to_front(root)
@@ -217,15 +223,6 @@ root.title("VecchioGPT")
 from tkinter import font as tkfont
 montserrat_font = tkfont.nametofont("TkDefaultFont")
 montserrat_font.configure(family="Montserrat")
-
-# Apply a themed style for a modern looentry.pack(fill="x")k
-style = ttk.Style()
-style.theme_use("clam")
-
-# Configure the style for a modern and stylish look
-style.configure("TLabel", background="#3498db", foreground="white", padding=10)
-style.configure("TEntry", background="#ecf0f1", padding=10)
-style.configure("TListbox", background="#ecf0f1", padding=10)
 
 # VECCHIOGPT IMAGE ==========
 # Open VecchioGPT image using PIL
