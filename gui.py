@@ -48,9 +48,11 @@ def on_tab(event):
 		listbox.see(selected_index)  # Scroll to the selected index
 		
 def overwrite_additionalParams():
-	for i in range(len(data["additionalParams"])):
-		key = data["additionalParams"][i]["key"]
-		data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
+	if	"additionalParams" in data:	
+		for i in range(len(data["additionalParams"])):
+			key = data["additionalParams"][i]["key"]
+			data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
+		
 	fileName = promptsDictionary.get(selected_item)
 	# Seeks the path
 	fullPath = os.path.join(os.path.dirname(__file__), "prompts/" + str(fileName))
