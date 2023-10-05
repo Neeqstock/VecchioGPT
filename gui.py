@@ -54,7 +54,7 @@ def overwrite_additionalParams():
 	fileName = promptsDictionary.get(selected_item)
 	# Seeks the path
 	fullPath = os.path.join(os.path.dirname(__file__), "prompts/" + str(fileName))
-	with open(fullPath, "w") as file:
+	with open(fullPath, "w", encoding="utf-8") as file:
 		json.dump(data, file, indent=4, ensure_ascii=False)
 
 def on_select(event):
@@ -78,8 +78,8 @@ def on_select(event):
 
 
 def on_enter(event):
-	print(f"selected_index: {selected_index}\n")
-	print(f"selected_item: {selected_item}\n")
+	# print(f"selected_index: {selected_index}\n")
+	# print(f"selected_item: {selected_item}\n")
 	if selected_index >= 0:
 		on_select(event)
 		
@@ -151,7 +151,7 @@ def display_info():
 
 		if filename:
 			try:
-				with open(os.path.join(promptsDirectoryName, filename)) as f:
+				with open(os.path.join(promptsDirectoryName, filename), encoding="utf-8") as f:
 					data = json.load(f)
 					# Decode Unicode escape sequences to display proper Unicode characters
 					decoded_info = codecs.decode(json.dumps(data, indent=2), 'unicode_escape')
@@ -198,7 +198,7 @@ for filename in os.listdir(promptsDirectoryName):
 	# Check if the file is a .json file
 	if filename.endswith('.json'):
 		# Open the .json file
-		with open(f'{promptsDirectoryName}/{filename}') as f:
+		with open(f'{promptsDirectoryName}/{filename}', encoding="utf-8") as f:
 			# Load the JSON data from the file
 			data = json.load(f)
 			# Strcat with prompt language
