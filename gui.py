@@ -266,7 +266,7 @@ sv_ttk.set_theme("dark")
 
 # Create and set the InfoBox label with an adjusted width and initial text
 info_label = ttk.Label(root, text="", font=("Montserrat", 12), wraplength=800)
-info_label.pack(pady=(5, 20))
+info_label.pack(pady=(20, 20))
 
 # Create a Notebook widget
 notebook = ttk.Notebook(root)
