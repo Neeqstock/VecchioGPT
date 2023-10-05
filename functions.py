@@ -94,8 +94,8 @@ def chat_with_gpt(file_name):
 
 	# Print prompt name
 	print("")
-	print('"' + '\033[1m' + colored(jsonFile["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
-	print(clipboardContents)
+	print('"' + '\033[1m' + colored(jsonFile["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '". Prompt:')
+	print(mergedPrompt)
 
 	response = openai.ChatCompletion.create(model=selected_model,
 											messages=[{"role": "system", "content": mergedSystemMessage},
