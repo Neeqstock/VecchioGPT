@@ -133,11 +133,8 @@ def on_down_arrow(event):
 		display_info()
 
 
-def clear_notebook(notebook):
-	for tab in notebook.winfo_children():
-		tab.destroy()
-	for i in range(notebook.index("end") - 1, -1, -1):
-		notebook.forget(i)
+def clear_frame(frame):
+	frame.destroy()
 
 def create_label_input_pairs(frame, additional_params):
 	key_entry_pairs = {}
@@ -161,10 +158,11 @@ def create_label_input_pairs(frame, additional_params):
 def display_info():
 	global selected_index
 	global data
+	global label_text_frame
 	if selected_index >= 0:
 		selected_item = listbox.get(selected_index)
 		filename = promptsDictionary.get(selected_item)
-		# clear_textboxes(notebook)
+		clear_frame(label_text_frame)
 		# key_entry_pairs.clear()
 
 		if filename:
@@ -181,10 +179,7 @@ def display_info():
 						label_text_frame = ttk.Frame(root)
 						label_text_frame.pack(pady=10)
 
-						key_entry_pairs = create_label_input_pairs(label_text_frame, additional_params)
-
-						# Store the key_entry_pairs in a global variable for future reference
-						key_entry_pairs[selected_item] = key_entry_pairs
+						create_label_input_pairs(label_text_frame, additional_params)
 
 			except FileNotFoundError:
 				info_label.configure(text=f"Info not available for {selected_item}")
@@ -267,8 +262,8 @@ info_label = ttk.Label(root, text="", font=("Montserrat", 12, "italic"), wraplen
 info_label.pack(pady=(20, 20))
 
 # Create a Notebook widget
-notebook = ttk.Notebook(root)
-notebook.pack(pady=5)
+label_text_frame = ttk.Frame(root)
+label_text_frame.pack(pady=10)
 
 # Main entry point ===================================
 if __name__ == "__main__":
