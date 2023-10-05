@@ -234,9 +234,9 @@ image = image.resize((80, 80))
 # Convert the image to Tkinter PhotoImage
 photo = ImageTk.PhotoImage(image)
 # Create a label and set the image
-label = tk.Label(root, image=photo)
+vecchioLabel = tk.Label(root, image=photo)
 # Pack the label to show it in the window
-label.pack()
+vecchioLabel.pack(pady=5)
 
 entry = ttk.Entry(root, width=80, font=("Montserrat", 12))
 entry.pack(pady=5)
