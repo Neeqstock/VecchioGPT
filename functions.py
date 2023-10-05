@@ -16,27 +16,27 @@ DEFAULT_ROLE = "system"
 
 # Model settings
 def read_model():
-    with open(SETTINGS_FILENAME, "r") as file:
-        return json.load(file)['model']
+	with open(SETTINGS_FILENAME, "r") as file:
+		return json.load(file)['model']
 
 def write_model(new_model):
-    with open(SETTINGS_FILENAME, 'r') as f:
-        data = json.load(f)
-        data["model"] = new_model
+	with open(SETTINGS_FILENAME, 'r') as f:
+		data = json.load(f)
+		data["model"] = new_model
 
-    with open(SETTINGS_FILENAME, 'w') as f:
-        json.dump(data, f, indent=4)
+	with open(SETTINGS_FILENAME, 'w') as f:
+		json.dump(data, f, indent=4)
 
 def next_model():
-    selected_model = read_model()
-    i = GPT_MODELS.index(selected_model)
-    selected_model = ""
-    if i + 1 < len(GPT_MODELS):
-        selected_model = GPT_MODELS[i + 1]
-    else:
-        selected_model = GPT_MODELS[0]
-    write_model(selected_model)
-    print("Model changed to: " + selected_model)
+	selected_model = read_model()
+	i = GPT_MODELS.index(selected_model)
+	selected_model = ""
+	if i + 1 < len(GPT_MODELS):
+		selected_model = GPT_MODELS[i + 1]
+	else:
+		selected_model = GPT_MODELS[0]
+	write_model(selected_model)
+	print("Model changed to: " + selected_model)
 
 # ===========================================================
 
@@ -46,8 +46,8 @@ SOUND_COMPLETED = "completed.wav"
 
 # OpenAI key
 def read_api_key(file_path):
-    with open(file_path, 'r') as f:
-        return f.readline().strip().split('=')[1]
+	with open(file_path, 'r') as f:
+		return f.readline().strip().split('=')[1]
 
 api_key = read_api_key(os.path.join(os.path.dirname(__file__), 'openai_key.txt'))
 
@@ -55,64 +55,64 @@ api_key = read_api_key(os.path.join(os.path.dirname(__file__), 'openai_key.txt')
 openai.api_key = api_key
 
 def read_json_file(file_path):
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-    return data
+	with open(file_path, 'r') as file:
+		data = json.load(file)
+	return data
 
 
 def chat_with_gpt(file_name):
-    # Get string from clipboard
-    clipboardContents = pyperclip.paste()
-    # Seeks the file name
-    fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
-    # Loads the settings from fn file name
-    jsonFile = read_json_file(fn)
+	# Get string from clipboard
+	clipboardContents = pyperclip.paste()
+	# Seeks the file name
+	fn = os.path.join(os.path.dirname(__file__), "prompts/" + str(file_name))
+	# Loads the settings from fn file name
+	jsonFile = read_json_file(fn)
 
-    mergedSystemMessage = jsonFile["systemMessage"]
-    mergedPrompt = jsonFile["prompt"]
+	mergedSystemMessage = jsonFile["systemMessage"]
+	mergedPrompt = jsonFile["prompt"]
 
-    # Merging operation: Replace all the § and §{}
-    # additional params first
-    additional_params = jsonFile.get("additionalParams")
-    if additional_params:
-        for param in additional_params:
-            key = param.get("key")
-            value = param.get("value")
-            mergedSystemMessage = mergedSystemMessage.replace("§{" + key + "}", value)
-            mergedPrompt = mergedPrompt.replace("§{" + key + "}", value)
-    
-    # then clipboard (to avoid override-replacing of §)
-    mergedSystemMessage = mergedSystemMessage.replace("§", clipboardContents)
-    mergedPrompt = mergedPrompt.replace('§', clipboardContents)
+	# Merging operation: Replace all the § and §{}
+	# additional params first
+	additional_params = jsonFile.get("additionalParams")
+	if additional_params:
+		for param in additional_params:
+			key = param.get("key")
+			value = param.get("value")
+			mergedSystemMessage = mergedSystemMessage.replace("§{" + key + "}", value)
+			mergedPrompt = mergedPrompt.replace("§{" + key + "}", value)
+	
+	# then clipboard (to avoid override-replacing of §)
+	mergedSystemMessage = mergedSystemMessage.replace("§", clipboardContents)
+	mergedPrompt = mergedPrompt.replace('§', clipboardContents)
 
-    # Create a dataset using GPT
-    selected_model = read_model()
-    if selected_model == NO_MODEL:
-        selected_model = jsonFile["gptModel"]
+	# Create a dataset using GPT
+	selected_model = read_model()
+	if selected_model == NO_MODEL:
+		selected_model = jsonFile["gptModel"]
 
-    # Print prompt name
-    print("")
-    print('"' + '\033[1m' + colored(jsonFile["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
-    print(clipboardContents)
+	# Print prompt name
+	print("")
+	print('"' + '\033[1m' + colored(jsonFile["promptName"], "yellow") + '\033[0m' + '" using model "' + selected_model + '" on input:')
+	print(clipboardContents)
 
-    response = openai.ChatCompletion.create(model=selected_model,
-                                            messages=[{"role": "system", "content": mergedSystemMessage},
-                                            {"role": "user", "content": mergedPrompt}])
+	response = openai.ChatCompletion.create(model=selected_model,
+											messages=[{"role": "system", "content": mergedSystemMessage},
+											{"role": "user", "content": mergedPrompt}])
 
-    ret = response["choices"][0]["message"]["content"]
-    print("")
-    print(colored('\033[1m' + "Answer" + '\033[0m', "green")  + ":")
-    print(ret)
-    print("")
-    print("=============================================")
-    print("")
-    return ret
+	ret = response["choices"][0]["message"]["content"]
+	print("")
+	print(colored('\033[1m' + "Answer" + '\033[0m', "green")  + ":")
+	print(ret)
+	print("")
+	print("=============================================")
+	print("")
+	return ret
 
 
 def play_sound(file_name):
-    fn = os.path.join(os.path.dirname(__file__), file_name)
-    wave_obj = sa.WaveObject.from_wave_file(fn)
-    play_obj = wave_obj.play()
-    play_obj.volume = 0.5  # Set volume to half the maximum
-    play_obj.wait_done()  # Wait for the sound to finish playing
+	fn = os.path.join(os.path.dirname(__file__), file_name)
+	wave_obj = sa.WaveObject.from_wave_file(fn)
+	play_obj = wave_obj.play()
+	play_obj.volume = 0.5  # Set volume to half the maximum
+	play_obj.wait_done()  # Wait for the sound to finish playing
 

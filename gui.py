@@ -11,8 +11,9 @@ import sv_ttk
 from PIL import ImageTk, Image
 import codecs
 
-# Directory containing the prompts
-promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts')
+global data
+
+promptsDirectoryName = os.path.join(os.path.dirname(__file__), 'prompts') # Directory containing the prompts
 promptsDictionary = {}
 possible_prompts = []  # List of possible prompts
 selected_index = -1  # Currently selected item index
@@ -45,22 +46,35 @@ def on_tab(event):
 		listbox.selection_clear(0, tk.END)
 		listbox.selection_set(selected_index)
 		listbox.see(selected_index)  # Scroll to the selected index
+		
+def overwrite_additionalParams():
+	for i in range(len(data["additionalParams"])):
+		key = data["additionalParams"][i]["key"]
+		data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
+	fileName = promptsDictionary.get(selected_item)
+	# Seeks the path
+	fullPath = os.path.join(os.path.dirname(__file__), "prompts/" + str(fileName))
+	with open(fullPath, "w") as file:
+		json.dump(data, file, indent=4, ensure_ascii=False)
 
 def on_select(event):
-	if listbox.curselection():
-		global selected_index
-		global selected_item
-		
-		print(f"Selected Prompt: {selected_item}")
-		entry.delete(0, tk.END)
-		entry.insert(0, selected_item)
-		global global_response
-		functions.play_sound(functions.SOUND_START)
-		tempPromptName = selected_item  # Store the selected item so it can destroy the root window
-		root.destroy()
-		global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
-		pyperclip.copy(global_response)
-		functions.play_sound(functions.SOUND_COMPLETED)
+    global selected_index
+    global selected_item
+
+	# Overwrite additional params to set new defaults
+    if len(key_entry_pairs) > 0:
+        overwrite_additionalParams()
+    
+    print(f"Selected Prompt: {selected_item}")
+    entry.delete(0, tk.END)
+    entry.insert(0, selected_item)
+    global global_response
+    functions.play_sound(functions.SOUND_START)
+    tempPromptName = selected_item  # Store the selected item so it can destroy the root window
+    root.destroy()
+    global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
+    pyperclip.copy(global_response)
+    functions.play_sound(functions.SOUND_COMPLETED)
 
 
 def on_enter(event):
@@ -127,11 +141,13 @@ def clear_notebook(notebook):
 
 def display_info():
 	global selected_index
+	global data
 	if selected_index >= 0:
 		selected_item = listbox.get(selected_index)
 		filename = promptsDictionary.get(selected_item)
 		# Clear notebook
 		clear_notebook(notebook)
+		key_entry_pairs.clear()
 
 		if filename:
 			try:
@@ -163,6 +179,7 @@ def display_info():
 							input_box.bind("<Return>", on_enter)
 							input_box.insert(0, value)  # Set default text
 							input_box.pack(pady=5)
+							key_entry_pairs[key] = input_box
 
 			except FileNotFoundError:
 				info_label.configure(text=f"Info not available for {selected_item}")
