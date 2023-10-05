@@ -28,6 +28,7 @@ def write_model(new_model):
 		json.dump(data, f, indent=4)
 
 def next_model():
+	
 	selected_model = read_model()
 	i = GPT_MODELS.index(selected_model)
 	selected_model = ""
@@ -37,6 +38,8 @@ def next_model():
 		selected_model = GPT_MODELS[0]
 	write_model(selected_model)
 	print("Model changed to: " + selected_model)
+
+    
 
 # ===========================================================
 
@@ -58,7 +61,6 @@ def read_json_file(file_path):
 	with open(file_path, 'r', encoding="utf-8") as file:
 		data = json.load(file)
 	return data
-
 
 def chat_with_gpt(file_name):
 	# Get string from clipboard

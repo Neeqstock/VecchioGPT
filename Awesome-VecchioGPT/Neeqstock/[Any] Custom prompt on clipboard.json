@@ -1,0 +1,16 @@
+{
+    "promptName": "Custom prompt on clipboard",
+    "language": "Any",
+    "description": "Applies a custom prompt to the clipboard contents.",
+    "author": "Neeqstock",
+    "systemMessage": "You're an helpful assistant. You're helping me by answering questions.",
+    "gptModel": "gpt-3.5-turbo",
+    "additionalParams": [
+        {
+            "key": "Prompt",
+            "value": ""
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§{Prompt}\n\n\"§\""
+}

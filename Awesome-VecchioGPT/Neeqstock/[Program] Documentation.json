@@ -3,14 +3,14 @@
     "language": "Program",
     "description": "Generates documentation for § code, in the language specified in the parameters",
     "author": "Neeqstock",
-    "systemMessage": "Generate §{language} documentation for the provided code. Answer only with the documentation, without providing any other answer in natural language. Include the correct syntax and symbols for §{language} documentation entries.",
+    "systemMessage": "Generate §{language} documentation for the provided code. Answer only with the documentation, without providing any other answer in natural language. Include the necessary symbols for §{language} documentation entries. Do not include parts of the code in your answer. Absolutely do not use markdown code blocks or code fences in your answer. Be concise but exhaustive.",
     "additionalParams": [
         {
             "key": "language",
-            "value": "Python"
+            "value": "C#"
         }
     ],
     "gptModel": "gpt-3.5-turbo",
-    "temperature": 0.5,
+    "temperature": 0.2,
     "prompt": "§"
 }

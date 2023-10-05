@@ -1,0 +1,16 @@
+{
+    "promptName": "Answer question about this",
+    "language": "Text",
+    "description": "Answer the specificed question about the text in the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "You're an helpful assistant. You answer questions that i pose you.",
+    "gptModel": "gpt-3.5-turbo",
+    "additionalParams": [
+        {
+            "key": "Question",
+            "value": "What's the meaning of this"
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "Given this text:\n\n \"§\" \n\nAnswer the following question: §{Question}"
+}
