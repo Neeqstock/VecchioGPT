@@ -1,0 +1,10 @@
+{
+    "promptName": "Summarize chat",
+    "language": "Text",
+    "description": "Summarizes the contents of the chat in the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "I'm a lazy person. I'm too lazy to read the contents of long chats. Explain me very shortly what this chat is about.",
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}
