@@ -1,0 +1,16 @@
+{
+    "promptName": "Documentation",
+    "language": "Program",
+    "description": "Generates documentation for § code, in the language specified in the parameters",
+    "author": "Neeqstock",
+    "systemMessage": "Generate §{language} documentation for the provided code. Answer only with the documentation, without providing any other answer in natural language. Include the correct syntax and symbols for §{language} documentation entries.",
+    "additionalParams": [
+        {
+            "key": "language",
+            "value": "Python"
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}
