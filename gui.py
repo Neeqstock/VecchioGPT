@@ -203,7 +203,7 @@ for filename in os.listdir(promptsDirectoryName):
 			# Load the JSON data from the file
 			data = json.load(f)
 			# Check if a dictionary `data` has a field `language`. If the field is present, save it into the `language` vaiable
-			language = f"[{data['language']}] " if 'language' in data else ""
+			language = f"[{data['language']}] " if 'language' in data and len(data['language']) > 0 else ""
 			promptString = language + data['promptName']
 			# Append the 'promptName' and filename to the dictionary
 			promptsDictionary[promptString] = filename
