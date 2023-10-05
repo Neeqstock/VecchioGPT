@@ -150,6 +150,7 @@ def create_label_input_pairs(frame, additional_params):
 		input_box = ttk.Entry(frame, width=40, font=("Montserrat", 12))
 		input_box.insert(0, value)  # Set default text
 		input_box.grid(row=len(key_entry_pairs), column=1, pady=5)
+		input_box.bind("<Return>", on_enter)
 
 		key_entry_pairs[key] = input_box
 
