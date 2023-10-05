@@ -1,0 +1,20 @@
+{
+    "promptName": "Modify Code",
+    "language": "Program",
+    "description": "Generates the code requested in the params, for the language specified in the params. Context is given by the content of the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "Modify the provided §{Language} code, following the request. Answer only with the modified code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": "Write a function that multiplies two integers"
+        },
+        {
+            "key": "Language",
+            "value": "C++"
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}\n\nCode to modify:\n\n§"
+}

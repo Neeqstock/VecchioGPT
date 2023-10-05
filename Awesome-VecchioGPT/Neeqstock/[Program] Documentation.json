@@ -3,7 +3,7 @@
     "language": "Program",
     "description": "Generates documentation for the code in the clipboard, in the language specified in the parameters",
     "author": "Neeqstock",
-    "systemMessage": "Generate §{Languagee} documentation for the code which I provide you. The code is written in §{Language}. Answer only with the documentation, without providing any other answer in natural language. Use the correct syntax for §{Language} documentation entries. DO NOT include the code I send you in your answer. Your documentation should be meaningful, and describe what the code does at a high level.",
+    "systemMessage": "Generate §{Language} documentation for the code which I provide you. The code is written in §{Language}. Answer only with the documentation, without providing any other answer in natural language. Use the correct syntax for §{Language} documentation entries. DO NOT include the code I send you in your answer. Your documentation should be meaningful, and describe what the code does at a high level.",
     "additionalParams": [
         {
             "key": "Language",

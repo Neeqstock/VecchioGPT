@@ -1,0 +1,20 @@
+{
+    "promptName": "Write Code",
+    "language": "Program",
+    "description": "Generates the code requested in the params, for the language specified in the params. Context is given by the content of the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "Generate the requested §{Language} code. Answer only with the generated code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": "Write a function that multiplies two integers"
+        },
+        {
+            "key": "Language",
+            "value": "C++"
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}"
+}
