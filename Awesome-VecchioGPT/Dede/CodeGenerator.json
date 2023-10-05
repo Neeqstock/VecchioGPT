@@ -1,0 +1,14 @@
+{
+    "promptName": "Generate code",
+    "description": "Generates code based on a natural language prompt",
+    "systemMessage": "The following input describes a program. Generate code for the requested program in §{Language}. Answer only with the code, without providing any other answer in natural language. Requested code:\n",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "julia"
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}

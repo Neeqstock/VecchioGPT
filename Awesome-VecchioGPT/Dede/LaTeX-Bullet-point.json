@@ -1,7 +1,7 @@
 {
-    "promptName": "Bullet draft to Text",
-    "language": "Text",
-    "description": "Transforms a bullet list draft into academic",
+    "promptName": "Bullet draft to text",
+    "description": "Transforms a bullet list draft into academic text, while preserving LaTeX commands",
+    "language": "LaTeX",
     "author": "Dede",
     "systemMessage": "The following bullet list is a concept draft written in LaTeX. Please turn the draft into text, suitable for academic publication. Use only the informations inside the draft, do not add new informations to the draft. The sentences should be concise. Don't touch the LaTeX code: keep every LaTeX syntax intact in your output if you find any",
     "gptModel": "gpt-3.5-turbo",

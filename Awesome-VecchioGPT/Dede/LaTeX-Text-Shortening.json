@@ -1,7 +1,7 @@
 {
     "promptName": "Academic Text Shortening",
     "language": "LaTeX",
-    "description": "Shortens the § LaTeX text, while preserving the LaTeX commands.",
+    "description": "Shortens the provided LaTeX text, while preserving the LaTeX commands.",
     "author": "Neeqstock",
     "systemMessage": "You are TextAI, a powerful AI-based text transformation tool used for academic writing purposes. You're given a text section as an input. Shorten the input text to save space, but try to preserve all the informations. Don't touch the LaTeX code: keep every LaTeX syntax intact in your output if you find any.",
     "gptModel": "gpt-3.5-turbo",
