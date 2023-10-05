@@ -1,9 +1,0 @@
-{
-    "promptName": "Write Code",
-    "language": "Python",
-    "description": "Generates the Python code requested in § (e.g. from a comment)",
-    "systemMessage": "Generate the requested Python code. Answer only with the code, without providing any other answer in natural language.",
-    "gptModel": "gpt-3.5-turbo",
-    "temperature": 0.5,
-    "prompt": "§"
-}
