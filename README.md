@@ -23,7 +23,7 @@ cd VecchioGPT
 Install dependencies using pip:
 
 ```bash
-pip3 install sv-ttk fuzzywuzzy pyperclip pillow termcolor simpleaudio openai pynput
+pip3 install sv-ttk thefuzz pyperclip pillow termcolor simpleaudio openai pynput
 ```
 
 ## Usage
@@ -85,7 +85,7 @@ It's greatly advised not to create two prompts with the same _promptName_.
 ## Dependencies
 
 - sv-ttk
-- fuzzywuzzy
+- thefuzz
 - pyperclip
 - PIL (Pillow)
 - termcolor
