@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import tkinter as tk
 from tkinter import ttk
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
+from thefuzz import fuzz
+from thefuzz import process
 import os
 import json
 import functions
@@ -25,19 +25,20 @@ def bring_to_front(window):
 	window.lift()
 	window.attributes('-topmost', True)
 	window.after_idle(window.attributes, '-topmost', False)
-	
+
+
 
 def on_search(event):
 	global selected_index
 	search_text = entry.get()
 	if search_text:
 		# Use fuzzy matching to find similar prompts
-		matches = process.extract(search_text, possible_prompts, scorer=fuzz.token_sort_ratio, limit=5)
+		matches = process.extract(search_text, possible_prompts, limit=10)
 		listbox.delete(0, tk.END)
 		for match, score in matches:
 			listbox.insert(tk.END, match)
 		selected_index = -1  # Reset selected index
-		
+
 
 def on_tab(event):
 	if listbox.size() > 0:
@@ -46,13 +47,13 @@ def on_tab(event):
 		listbox.selection_clear(0, tk.END)
 		listbox.selection_set(selected_index)
 		listbox.see(selected_index)  # Scroll to the selected index
-		
+
 def overwrite_additionalParams():
-	if	"additionalParams" in data:	
+	if	"additionalParams" in data:
 		for i in range(len(data["additionalParams"])):
 			key = data["additionalParams"][i]["key"]
 			data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
-		
+
 	fileName = promptsDictionary.get(selected_item)
 	# Seeks the path
 	fullPath = os.path.join(os.path.dirname(__file__), "prompts/" + str(fileName))
@@ -66,7 +67,7 @@ def on_select(event):
 	# Overwrite additional params to set new defaults
 	if len(key_entry_pairs) > 0:
 		overwrite_additionalParams()
-	
+
 	print(f"Selected Prompt: {selected_item}")
 	entry.delete(0, tk.END)
 	entry.insert(0, selected_item)
@@ -84,7 +85,7 @@ def on_enter(event):
 	# print(f"selected_item: {selected_item}\n")
 	if selected_index >= 0:
 		on_select(event)
-		
+
 
 def on_up_arrow(event):
 	global selected_index
@@ -108,7 +109,7 @@ def on_up_arrow(event):
 		selected_index = listbox.curselection()[0]
 		selected_item = listbox.get(selected_index)
 		display_info()
-		
+
 
 def on_down_arrow(event):
 	global selected_index
