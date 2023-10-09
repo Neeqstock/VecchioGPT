@@ -27,7 +27,6 @@ def bring_to_front(window):
 	window.after_idle(window.attributes, '-topmost', False)
 
 
-
 def on_search(event):
 	global selected_index
 	search_text = entry.get()
@@ -49,16 +48,24 @@ def on_tab(event):
 		listbox.see(selected_index)  # Scroll to the selected index
 
 def overwrite_additionalParams():
-	if	"additionalParams" in data:
-		for i in range(len(data["additionalParams"])):
-			key = data["additionalParams"][i]["key"]
-			data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
-
 	fileName = promptsDictionary.get(selected_item)
 	# Seeks the path
 	fullPath = os.path.join(os.path.dirname(__file__), "prompts/" + str(fileName))
+
+	# Read original prompt and modify only the additional parameters that have
+	# `overwrite` field set to true
+	original_json = functions.read_json_file(fullPath)
+
+	if "additionalParams" in data:
+		for i in range(len(data["additionalParams"])):
+			key = data["additionalParams"][i]["key"]
+			data["additionalParams"][i]["value"] = key_entry_pairs[key].get()
+			if "overwrite" in data["additionalParams"][i] and data["additionalParams"][i]["overwrite"]:
+				original_json["additionalParams"][i]["value"] = data["additionalParams"][i]["value"]
+
 	with open(fullPath, "w", encoding="utf-8") as file:
-		json.dump(data, file, indent=4, ensure_ascii=False)
+		json.dump(original_json, file, indent=4, ensure_ascii=False)
+
 
 def on_select(event):
 	global selected_index
@@ -75,7 +82,7 @@ def on_select(event):
 	functions.play_sound(functions.SOUND_START)
 	tempPromptName = selected_item  # Store the selected item so it can destroy the root window
 	root.destroy()
-	global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName))
+	global_response = functions.chat_with_gpt(promptsDictionary.get(tempPromptName), data)
 	pyperclip.copy(global_response)
 	functions.play_sound(functions.SOUND_COMPLETED)
 

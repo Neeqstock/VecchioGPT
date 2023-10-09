@@ -62,7 +62,7 @@ def read_json_file(file_path):
 		data = json.load(file)
 	return data
 
-def chat_with_gpt(file_name):
+def chat_with_gpt(file_name, data):
 	# Get string from clipboard
 	clipboardContents = pyperclip.paste()
 	# Seeks the file name
@@ -75,8 +75,8 @@ def chat_with_gpt(file_name):
 
 	# Merging operation: Replace all the § and §{}
 	# additional params first
-	additional_params = jsonFile.get("additionalParams")
-	if additional_params:
+	if "additionalParams" in data:
+		additional_params = data["additionalParams"]
 		for param in additional_params:
 			key = param.get("key")
 			value = param.get("value")
