@@ -64,19 +64,19 @@ CTRL+SHIFT+*: open the prompt selection GUI
 
 CTRL+SHIFT+-: change the model in use, between gpt-3.5-turbo, gpt-4, or prompt_default. This one means the model suggested in the custom prompt file will be used.
 
-## Making new custom prompts
+## [Making new custom prompts](./docs/prompts.md)
 
-Custom prompts are files stored inside the _prompts_ folder. You will find a collection of custom prompts inside the _Awesome-VecchioGPT_ folder, which you can simply move to the prompts folder.
-Creating new prompts is easy: just copy any prompt file and edit the fields. The fields to edit are:
+<!-- Custom prompts are files stored inside the _prompts_ folder. You will find a collection of custom prompts inside the _Awesome-VecchioGPT_ folder, which you can simply move to the prompts folder. -->
+<!-- Creating new prompts is easy: just copy any prompt file and edit the fields. The fields to edit are: -->
 
-- **promptName**: name of the prompt which will be shown in the GUI;
-- **language**: type of programming or markup language involved. Specify "Text" if the prompt works on plain text;
-- **description**: a detailed description of the effect of the prompt;
-- **author**: your nickname x)
-- **systemMessage**: the system message that will be sent as part of the prompt. Required, and often used to give specific instructions and informations to the model.
-- **gptModel**: suggested GPT model to be used with this prompt;
-- **temperature**: form 0.1 to 1.0, define how much "creative" will the answer be. 0.1 is the creativity extreme, while 1.0 means every answer will be the same, provided the same prompt contents;
-- **prompt**: the effective prompt that will be passed to the GPT model. Use "§" character to specify where the clipboard contents will be merged inside the prompt: it will be substituted with the contents of the clipboard.
+<!-- - **promptName**: name of the prompt which will be shown in the GUI; -->
+<!-- - **language**: type of programming or markup language involved. Specify "Text" if the prompt works on plain text; -->
+<!-- - **description**: a detailed description of the effect of the prompt; -->
+<!-- - **author**: your nickname x) -->
+<!-- - **systemMessage**: the system message that will be sent as part of the prompt. Required, and often used to give specific instructions and informations to the model. -->
+<!-- - **gptModel**: suggested GPT model to be used with this prompt; -->
+<!-- - **temperature**: form 0.1 to 1.0, define how much "creative" will the answer be. 0.1 is the creativity extreme, while 1.0 means every answer will be the same, provided the same prompt contents; -->
+<!-- - **prompt**: the effective prompt that will be passed to the GPT model. Use "§" character to specify where the clipboard contents will be merged inside the prompt: it will be substituted with the contents of the clipboard. -->
 
 Files named _(0-9).json_ must be present in the _prompts_ folder, and refer to the prompts that will be called using the CTRL+SHIFT+(0-9) keyboard shortcut combination, using the background daemon. Those will be also accessible through the prompt picker GUI.
 
