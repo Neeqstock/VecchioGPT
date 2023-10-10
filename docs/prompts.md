@@ -64,3 +64,29 @@ This documentation provides an overview of the structure of a json file used as 
 - Example: "Request: §{Request}\n\nCode to modify:\n\n§"
 
 Please note that the json file can be customized by modifying the values of the respective fields according to your requirements. The `additionalParams` field allows users to provide custom input for specific parameters, either overriding the defaults specified in the json file or using the defaults if left empty.
+
+
+## Example
+```json
+{
+    "promptName": "Modify Code",
+    "language": "Program",
+    "description": "Modifies the code in the clipboard using the request specified as optional parameter below.",
+    "author": "Neeqstock",
+    "systemMessage": "Modify the provided §{Language} code, following the request. Answer only with the modified code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": ""
+        },
+        {
+            "key": "Language",
+            "value": "python",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}\n\nCode to modify:\n\n§"
+}
+```
