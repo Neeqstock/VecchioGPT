@@ -165,3 +165,4 @@ VecchioGPT.bat
 openai_key.txt
 *.pyc
 __pycache__/functions.cpython-310.pyc
+settings.json
