@@ -28,7 +28,7 @@ def write_model(new_model):
 		json.dump(data, f, indent=4)
 
 def next_model():
-	
+
 	selected_model = read_model()
 	i = GPT_MODELS.index(selected_model)
 	selected_model = ""
@@ -39,7 +39,7 @@ def next_model():
 	write_model(selected_model)
 	print("Model changed to: " + selected_model)
 
-    
+
 
 # ===========================================================
 
@@ -49,10 +49,10 @@ SOUND_COMPLETED = "completed.wav"
 
 # OpenAI key
 def read_api_key(file_path):
-	with open(file_path, 'r') as f:
-		return f.readline().strip().split('=')[1]
+	with open(SETTINGS_FILENAME, "r") as file:
+		return json.load(file)['OPENAI_API_KEY']
 
-api_key = read_api_key(os.path.join(os.path.dirname(__file__), 'openai_key.txt'))
+api_key = read_api_key(SETTINGS_FILENAME)
 
 # Initialize the OpenAI API client
 openai.api_key = api_key
@@ -82,7 +82,7 @@ def chat_with_gpt(file_name, data):
 			value = param.get("value")
 			mergedSystemMessage = mergedSystemMessage.replace("§{" + key + "}", value)
 			mergedPrompt = mergedPrompt.replace("§{" + key + "}", value)
-	
+
 	# then clipboard (to avoid override-replacing of §)
 	mergedSystemMessage = mergedSystemMessage.replace("§", clipboardContents)
 	mergedPrompt = mergedPrompt.replace('§', clipboardContents)
