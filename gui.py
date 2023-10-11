@@ -4,6 +4,7 @@ from tkinter import ttk
 from thefuzz import fuzz
 from thefuzz import process
 import os
+import sys
 import json
 import functions
 import pyperclip
@@ -12,6 +13,27 @@ from PIL import ImageTk, Image
 import codecs
 
 # sv_ttk.set_theme("dark")
+def popup_notification(message, expire_time=1500):
+    if sys.platform.startswith('linux'):
+        os.system(f'notify-send --expire-time={expire_time} "{message}"')
+    if sys.platform.startswith('darwin'):
+        os.system(f"osascript -e 'display notification \"{message}\" with title \"Notification\"'")
+    elif sys.platform.startswith('win'):
+        os.system(f"powershell -Command \"Add-Type -TypeDefinition @'\
+                using System; \
+                using System.Runtime.InteropServices; \
+                public class MessageBox {{ \
+                    [DllImport(\"user32.dll\", SetLastError = true)] \
+                    public static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type); \
+                    public static void Show(string message) {{ \
+                        MessageBox(IntPtr.Zero, message, \"Notification\", 0x40); \
+                    }} \
+                }} \
+            '@; [MessageBox]::Show('{message}')\"")
+    else:
+        print(message)
+
+
 
 class VecchioGPTGUI:
     """
@@ -235,11 +257,26 @@ class VecchioGPTGUI:
             self.overwrite_additional_params()
 
         self.temp_prompt_name = self.selected_item
-        self.root.destroy()
-        functions.play_sound(functions.SOUND_START)
+
+        notification_type = functions.read_notification()
+        # Notifications of the prompt being run 
+        if "window" not in notification_type:
+            self.root.destroy()
+        if "sound" in notification_type:
+            functions.play_sound(functions.SOUND_START)
+        if "popup" in notification_type:
+            popup_notification("Running prompt ...", 3000)
+
         global_response = functions.chat_with_gpt(self.prompts_dictionary.get(self.temp_prompt_name), self.data)
         pyperclip.copy(global_response)
-        functions.play_sound(functions.SOUND_COMPLETED)
+
+        # Notifications of the job being completed 
+        if "window" in notification_type:
+            self.root.destroy()
+        if "popup" in notification_type:
+            popup_notification("Done!", 1500)
+        if "sound" in notification_type:
+            functions.play_sound(functions.SOUND_COMPLETED)
 
     def create_label_input_pairs(self, frame, additional_params):
         """
