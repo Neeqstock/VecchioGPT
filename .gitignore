@@ -162,7 +162,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 VecchioGPT.bat
-openai_key.txt
+/openai_key.txt
 *.pyc
 __pycache__/functions.cpython-310.pyc
-settings.json
+/settings.json
