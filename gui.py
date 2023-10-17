@@ -106,6 +106,7 @@ class VecchioGPTGUI:
         # Scrollbar for the listbox
         self.listbox_scrollbar = tk.Scrollbar(self.listbox_frame)
         self.listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.listbox_scrollbar.config(width=6.5)
         # Configure the listbox to use the scrollbar
         self.listbox.config(yscrollcommand=self.listbox_scrollbar.set)
         self.listbox_scrollbar.config(command=self.listbox.yview)
