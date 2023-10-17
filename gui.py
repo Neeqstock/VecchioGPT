@@ -96,7 +96,7 @@ class VecchioGPTGUI:
         self.listbox_frame.pack(padx=5, pady=5, fill=tk.X)
 
         self.listbox = tk.Listbox(self.listbox_frame, selectmode=tk.SINGLE, height=5, width=80,
-                                  font=("Montserrat", 12), bd=0, highlightthickness=0)
+                                  font=("Montserrat", 12), bd=0, highlightthickness=0, exportselection=False)
         self.listbox.pack(pady=5)
         self.listbox.bind("<Return>", self.on_enter)
         self.listbox.bind("<Up>", self.on_up_arrow)
@@ -104,13 +104,12 @@ class VecchioGPTGUI:
         self.listbox.pack(side=tk.LEFT)
 
         # Scrollbar for the listbox
-        self.listbox_scrollbar = tk.Scrollbar(self.listbox_frame)
+        self.listbox_scrollbar = tk.Scrollbar(self.listbox_frame, takefocus=0)
         self.listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         self.listbox_scrollbar.config(width=6.5)
         # Configure the listbox to use the scrollbar
         self.listbox.config(yscrollcommand=self.listbox_scrollbar.set)
         self.listbox_scrollbar.config(command=self.listbox.yview)
-
 
 
 
