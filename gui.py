@@ -85,19 +85,36 @@ class VecchioGPTGUI:
         self.root.title("VecchioGPT")
         self.vecchio_label = self.create_vecchio_label()
 
-
+        # Inputbox for fuzzy search of the prompts
         self.entry = ttk.Entry(self.root, width=80, font=("Montserrat", 12))
         self.entry.pack(pady=5)
         self.entry.bind("<KeyRelease>", self.on_search)
         self.entry.focus_set()
 
-        self.listbox = tk.Listbox(self.root, selectmode=tk.SINGLE, height=5, width=80,
+        # Listbox containing prompts
+        self.listbox_frame = tk.Frame(self.root)
+        self.listbox_frame.pack(padx=5, pady=5, fill=tk.X)
+
+        self.listbox = tk.Listbox(self.listbox_frame, selectmode=tk.SINGLE, height=5, width=80,
                                   font=("Montserrat", 12), bd=0, highlightthickness=0)
         self.listbox.pack(pady=5)
         self.listbox.bind("<Return>", self.on_enter)
         self.listbox.bind("<Up>", self.on_up_arrow)
         self.listbox.bind("<Down>", self.on_down_arrow)
+        self.listbox.pack(side=tk.LEFT)
 
+        # Scrollbar for the listbox
+        self.listbox_scrollbar = tk.Scrollbar(self.listbox_frame)
+        self.listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        # Configure the listbox to use the scrollbar
+        self.listbox.config(yscrollcommand=self.listbox_scrollbar.set)
+        self.listbox_scrollbar.config(command=self.listbox.yview)
+
+
+
+
+
+        # Label box containing the description of the prompt 
         self.info_label = ttk.Label(self.root, text="", font=("Montserrat", 12, "italic"), wraplength=800)
         self.info_label.pack(pady=(20, 20))
 
