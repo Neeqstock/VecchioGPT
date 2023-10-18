@@ -17,7 +17,7 @@ VecchioGPT runs on the OpenAI API, which means that you need to have an OpenAI a
 - Interactive GUI: A cross-platform graphical user interface provides a user-friendly way to select and customize prompts.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/readme_files/gui_example.png" alt="VecchioGPT GUI example" height="300px" width="640px" />
+  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/readme_files/gui_example.png" alt="VecchioGPT GUI example" style="max-width: 300px; height: auto; " />
 </div>
 
 ## Installation
