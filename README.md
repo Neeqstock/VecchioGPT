@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/VecchioGPT.png" alt="Image" width="150px" height="150px" />
+</div>
+
 # VecchioGPT
  _System-wide GPT prompts computed on your clipboard's contents! Ghe provo però vecchio bel casino vero? Sisi, si_
 
