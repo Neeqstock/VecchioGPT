@@ -4,6 +4,7 @@ from tkinter import ttk
 from thefuzz import fuzz
 from thefuzz import process
 import os
+import sys
 import json
 import functions
 import pyperclip
@@ -12,6 +13,27 @@ from PIL import ImageTk, Image
 import codecs
 
 # sv_ttk.set_theme("dark")
+def popup_notification(message, expire_time=1500):
+    if sys.platform.startswith('linux'):
+        os.system(f'notify-send --expire-time={expire_time} "{message}"')
+    if sys.platform.startswith('darwin'):
+        os.system(f"osascript -e 'display notification \"{message}\" with title \"Notification\"'")
+    elif sys.platform.startswith('win'):
+        os.system(f"powershell -Command \"Add-Type -TypeDefinition @'\
+                using System; \
+                using System.Runtime.InteropServices; \
+                public class MessageBox {{ \
+                    [DllImport(\"user32.dll\", SetLastError = true)] \
+                    public static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type); \
+                    public static void Show(string message) {{ \
+                        MessageBox(IntPtr.Zero, message, \"Notification\", 0x40); \
+                    }} \
+                }} \
+            '@; [MessageBox]::Show('{message}')\"")
+    else:
+        print(message)
+
+
 
 class VecchioGPTGUI:
     """
@@ -63,19 +85,38 @@ class VecchioGPTGUI:
         self.root.title("VecchioGPT")
         self.vecchio_label = self.create_vecchio_label()
 
-
+        # Inputbox for fuzzy search of the prompts
         self.entry = ttk.Entry(self.root, width=80, font=("Montserrat", 12))
         self.entry.pack(pady=5)
         self.entry.bind("<KeyRelease>", self.on_search)
         self.entry.focus_set()
 
-        self.listbox = tk.Listbox(self.root, selectmode=tk.SINGLE, height=5, width=80,
-                                  font=("Montserrat", 12), bd=0, highlightthickness=0)
+        # Listbox containing prompts
+        self.listbox_frame = tk.Frame(self.root)
+        self.listbox_frame.pack(padx=5, pady=5, fill=tk.X)
+
+        self.listbox = tk.Listbox(self.listbox_frame, selectmode=tk.SINGLE, height=5, width=80,
+                                  font=("Montserrat", 12), bd=0, highlightthickness=0, exportselection=False)
         self.listbox.pack(pady=5)
         self.listbox.bind("<Return>", self.on_enter)
         self.listbox.bind("<Up>", self.on_up_arrow)
         self.listbox.bind("<Down>", self.on_down_arrow)
+        self.listbox.bind("<ButtonRelease-1>", self.listbox_mouse)
 
+        self.listbox.pack(side=tk.LEFT)
+
+        # Scrollbar for the listbox
+        self.listbox_scrollbar = tk.Scrollbar(self.listbox_frame, takefocus=0)
+        self.listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.listbox_scrollbar.config(width=6.5)
+        # Configure the listbox to use the scrollbar
+        self.listbox.config(yscrollcommand=self.listbox_scrollbar.set)
+        self.listbox_scrollbar.config(command=self.listbox.yview)
+
+
+
+
+        # Label box containing the description of the prompt 
         self.info_label = ttk.Label(self.root, text="", font=("Montserrat", 12, "italic"), wraplength=800)
         self.info_label.pack(pady=(20, 20))
 
@@ -149,6 +190,15 @@ class VecchioGPTGUI:
         """
         if self.selected_index >= 0:
             self.on_select(event)
+
+    def listbox_mouse(self, event):
+        self.selected_index = self.listbox.curselection()[0]
+        self.listbox.selection_clear(0, tk.END)
+        self.listbox.selection_set(self.selected_index)
+        self.listbox.activate(self.selected_index)
+        self.selected_item = self.listbox.get(self.selected_index)
+        self.display_info()
+
 
     def on_up_arrow(self, event):
         """
@@ -235,11 +285,26 @@ class VecchioGPTGUI:
             self.overwrite_additional_params()
 
         self.temp_prompt_name = self.selected_item
-        self.root.destroy()
-        functions.play_sound(functions.SOUND_START)
+
+        notification_type = functions.read_notification()
+        # Notifications of the prompt being run 
+        if "window" not in notification_type:
+            self.root.destroy()
+        if "sound" in notification_type:
+            functions.play_sound(functions.SOUND_START)
+        if "popup" in notification_type:
+            popup_notification("Running prompt ...", 3000)
+
         global_response = functions.chat_with_gpt(self.prompts_dictionary.get(self.temp_prompt_name), self.data)
         pyperclip.copy(global_response)
-        functions.play_sound(functions.SOUND_COMPLETED)
+
+        # Notifications of the job being completed 
+        if "window" in notification_type:
+            self.root.destroy()
+        if "popup" in notification_type:
+            popup_notification("Done!", 1500)
+        if "sound" in notification_type:
+            functions.play_sound(functions.SOUND_COMPLETED)
 
     def create_label_input_pairs(self, frame, additional_params):
         """

@@ -1,0 +1,20 @@
+{
+    "promptName": "Academic Text Translation",
+    "description": "Translates a LaTeX text from an input language to an output language, while preserving the LaTeX commands.",
+    "language": "LaTeX",
+    "author": "Dede",
+    "systemMessage": "You're given a ${Input language} text as an input. Translate the input text to ${Output language} and make it very readable and well-written. The sentences should be concise and ready for publication in an academic journal. Don't touch the LaTeX code: keep every LaTeX syntax intact in your output if you find any.",
+    "additionalParams": [
+        {
+            "key": "Input language",
+            "value": "Italian"
+        },
+        {
+            "key": "Input language",
+            "value": "English"
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.3,
+    "prompt": "Input text: §"
+}

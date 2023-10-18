@@ -39,6 +39,14 @@ def next_model():
 	write_model(selected_model)
 	print("Model changed to: " + selected_model)
 
+def read_notification():
+	with open(SETTINGS_FILENAME, "r") as file:
+		settings = json.load(file)
+		if 'notification' in settings:
+			return settings['notification']
+		else:
+			return []
+
 
 
 # ===========================================================
