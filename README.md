@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/VecchioGPT.png" alt="Image" width="150px" height="150px" />
+  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/VecchioGPT.png" alt="VecchioGPT logo. Thanks for existing, Stable Diffusion, because I can't draw." width="150px" height="150px" />
 </div>
 
 # VecchioGPT
@@ -15,6 +15,10 @@ VecchioGPT runs on the OpenAI API, which means that you need to have an OpenAI a
 - Clipboard Integration: Easily generate prompts using text copied to the system clipboard.
 - Workflow Efficiency: Use a designated hotkey to call VecchioGPT, and the user-defined prompt is executed, with the output conveniently pasted into the clipboard.
 - Interactive GUI: A cross-platform graphical user interface provides a user-friendly way to select and customize prompts.
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Neeqstock/VecchioGPT/main/readme_files/gui_example.png" alt="VecchioGPT GUI example" height="200px" />
+</div>
 
 ## Installation
 
