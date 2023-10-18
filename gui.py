@@ -101,6 +101,8 @@ class VecchioGPTGUI:
         self.listbox.bind("<Return>", self.on_enter)
         self.listbox.bind("<Up>", self.on_up_arrow)
         self.listbox.bind("<Down>", self.on_down_arrow)
+        self.listbox.bind("<ButtonRelease-1>", self.listbox_mouse)
+
         self.listbox.pack(side=tk.LEFT)
 
         # Scrollbar for the listbox
@@ -188,6 +190,15 @@ class VecchioGPTGUI:
         """
         if self.selected_index >= 0:
             self.on_select(event)
+
+    def listbox_mouse(self, event):
+        self.selected_index = self.listbox.curselection()[0]
+        self.listbox.selection_clear(0, tk.END)
+        self.listbox.selection_set(self.selected_index)
+        self.listbox.activate(self.selected_index)
+        self.selected_item = self.listbox.get(self.selected_index)
+        self.display_info()
+
 
     def on_up_arrow(self, event):
         """
