@@ -10,13 +10,13 @@ import os
 wait_message = "Waiting for CTRL+SHIFT+(key)..."
 
 def launch_numeral_prompt(val):
-    functions.play_sound(functions.SOUND_START)
+    #functions.play_sound(functions.SOUND_START)
     
     global global_response
     global_response = functions.chat_with_gpt(str(val) + ".json")
     pyperclip.copy(global_response)
 
-    functions.play_sound(functions.SOUND_COMPLETED)
+    #functions.play_sound(functions.SOUND_COMPLETED)
     print(wait_message)
 
 def launch_gui_prompt():
