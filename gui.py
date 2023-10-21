@@ -73,6 +73,7 @@ class VecchioGPTGUI:
         Initializes the GUI application.
         """
         self.prompts_directory = os.path.join(os.path.dirname(__file__), 'prompts')
+        self.history = os.path.join(os.path.dirname(__file__), ".history")
         self.prompts_dictionary = {}
         self.possible_prompts = []
         self.selected_index = -1
@@ -154,6 +155,10 @@ class VecchioGPTGUI:
                     prompt_string = language + data['promptName']
                     self.prompts_dictionary[prompt_string] = filename
                     self.possible_prompts.append(prompt_string)
+
+        # print(f"possible_prompts: {self.possible_prompts}\n")
+        # print(f"prompts_dictionary: {self.prompts_dictionary}\n")
+        self.possible_prompts = functions.sort_prompts_history(self.possible_prompts, f'{self.prompts_directory}/{self.history}')
 
         for prompt in self.possible_prompts:
             self.listbox.insert(tk.END, prompt)
@@ -295,8 +300,16 @@ class VecchioGPTGUI:
         if "popup" in notification_type:
             popup_notification("Running prompt ...", 3000)
 
-        global_response = functions.chat_with_gpt(self.prompts_dictionary.get(self.temp_prompt_name), self.data)
+        # Get string from clipboard
+        clipboardContents = pyperclip.paste()
+        global_response = functions.chat_with_gpt(self.prompts_dictionary.get(self.temp_prompt_name), self.data, clipboardContents)
+        # print(f"self.data: {self.data}")
         pyperclip.copy(global_response)
+        
+        # Run second ChatGPT call if LaTeX citations have to be fixed 
+        if "fix-latex-citations" in self.data and self.data["fix-latex-citations"]:
+                print("Fixing LaTeX citations...\n")
+                functions.fix_latex_citations(clipboardContents, global_response)
 
         # Notifications of the job being completed 
         if "window" in notification_type:
