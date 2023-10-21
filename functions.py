@@ -173,18 +173,22 @@ def sort_prompts_history(possible_prompts, path_to_history):
 #                               Citation fixer                                      #
 #####################################################################################
 """
-Fix LaTeX citations in a given input text by substituting them with the correct labels. 
+Fix LaTeX citations in a given output text rewritten by ChatGPT by substituting them with the correct
+labels. The code is run only if some citations in the original text are not present in the output text.
 
 **Arguments:**
 - `input_text` (str): The input text containing LaTeX citations.
-- `output_text` (str): The output text where the citations will be substituted.
+- `output_text` (str): The output text from ChatGPT where the citations need to be fixed.
 
 **Returns:**
-- `ret` (str): The fixed text with replaced citations.
+- `ret` (str): The text with replaced citations.
 """
 def fix_latex_citations(input_text, output_text):
     citations = get_citations(input_text)
-    ret = substitute_citations(output_text, citations)
+    citations_output = get_citations(output_text)
+    ret = output_text
+    if set(citations) != set(citations_output):
+        ret = substitute_citations(output_text, citations)
     return ret
 
 
