@@ -226,7 +226,7 @@ def substitute_citations(output_text, citations):
     #FIXME: check to make sure that a model is selected in the settings
     selected_model = read_model()
     message_when_fixing_citations = """
-    I will give a text as an input and a set of LaTeX citation labels such as `\cite{<label>}`,`\citet{<label1>,<label2>}`, `\Cref{<label>}`, etc. Please substitute the references that you find in the text with the correct input labels. Do not touch anything else.
+    I will give a text as an input and a set of LaTeX citation labels such as `\cite{<label>}`,`\citet{<label1>,<label2>}`. Please substitute the references that you find in the input text with the correct LaTeX citation labels. Do not touch anything else.
     """
 
     prompt_to_fix_citations = f"Input labels: {citations}\n\nInput text: {output_text}"
@@ -242,7 +242,7 @@ def substitute_citations(output_text, citations):
 
     response = openai.ChatCompletion.create(model=selected_model,
                                             messages=[{"role": "system", "content": message_when_fixing_citations},
-                                            {"role": "user", "content": prompt_to_fix_citations}], temperature=0.1)
+                                            {"role": "user", "content": prompt_to_fix_citations}], temperature=0.15)
 
     ret = response["choices"][0]["message"]["content"]
     print(colored('\033[1m' + "Fixed text" + '\033[0m', "green")  + ":")
