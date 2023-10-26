@@ -1,0 +1,21 @@
+{
+    "promptName": "Generate new code",
+    "description": "Generates the code requested as input in the additional parameters, for the specified language.",
+    "author": "Dede",
+    "language": "Code",
+    "systemMessage": "Generate the requested §{Language} code. Answer only with the generated code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": ""
+        },
+        {
+            "key": "Language",
+            "value": "julia",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}"
+}

@@ -1,0 +1,17 @@
+{
+    "promptName": "Generate unit tests",
+    "description": "Generates a documentation for the input code",
+    "author": "Dede",
+    "language": "Code",
+    "systemMessage": "Generate a complete unit tests for the provided §{Language} code. Follow these guidelines for an effective testing process:\n - Analyze the ${Language} code thoroughly, step by step.\n - Each unit test should focus on one functionality, enhancing readability and ease of debugging. Ensure each test is isolated and does not depend on others. \n - Your tests should follow a clear structure and use descriptive names to make their purpose clear.\n - Your tests should confirm that the code works under both expected conditions and failure modes.\n - Go beyond testing the expected use cases and ensure edge cases are also tested to catch potential bugs that might not be apparent in regular use.",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "julia",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "§"
+}

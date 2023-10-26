@@ -1,0 +1,21 @@
+{
+    "promptName": "Modify the provided code",
+    "description": "Modifies the code in the clipboard using the request specified as optional parameter below.",
+    "author": "Neeqstock",
+    "language": "Code",
+    "systemMessage": "Modify the provided §{Language} code, following the request. Answer only with the modified code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": ""
+        },
+        {
+            "key": "Language",
+            "value": "python",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}\n\nCode to modify:\n\n§"
+}

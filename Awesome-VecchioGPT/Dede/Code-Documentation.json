@@ -1,12 +1,14 @@
 {
-    "promptName": "Code documentation",
+    "promptName": "Generate documentation",
     "description": "Generates a documentation for the input code",
     "author": "Dede",
+    "language": "Code",
     "systemMessage": "Generate a §{Language} docstring for the provided code. The docstring should follow the standard guidelines for §{Language} documentations, such as provide a list of function or class/struct arguments, with a description for each as well as their default values. Answer only with the documentation, without providing any other answer in natural language.",
     "additionalParams": [
         {
             "key": "Language",
-            "value": "julia"
+            "value": "julia",
+            "overwrite": true
         }
     ],
     "gptModel": "gpt-3.5-turbo",
