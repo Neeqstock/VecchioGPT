@@ -127,7 +127,6 @@ def play_sound(file_name):
 	play_obj.volume = 0.5  # Set volume to half the maximum
 	play_obj.wait_done()  # Wait for the sound to finish playing
 
-
 '''
 Returns the prompts sorted by the history and fixes the history file (purge inexistent files in history, add new files which were not present)
 '''
@@ -139,12 +138,10 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 
 
 	files_in_folder = list(prompts_dictionary.values())
-	print(files_in_folder)
-	print(history_filenames)
-	
+	print("files_in_folder", files_in_folder)
+	print("\n")
 	# purging all the elements in history_filenames which are not present in files_in_folder
 	history_filenames = [filename for filename in history_filenames if filename in files_in_folder]
-	print(history_filenames)
 
 	# Taking all the elements in files_in_folder and adding them to the bottom of history_filenames
 	for filename in files_in_folder:
@@ -157,10 +154,22 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 			file.write(name + "\n")
 
 	# Get list of promptnames given file name
-	sorted_promptnames = [prompt for prompt, filename in prompts_dictionary.items() if filename in history_filenames]
+	tuples = prompts_dictionary.items()
+	# prompts = list(prompts_dictionary.keys())
+	# filenames = list(prompts_dictionary.values())
+	sorted_promptnames = []
+	for filename in history_filenames:
+		sorted_promptnames.append(find_key(prompts_dictionary, filename))
+		
 	print("sorted_promptnames", sorted_promptnames)
 
 	return sorted_promptnames
+
+def find_key(dictionary, value):
+    for key, val in dictionary.items():
+        if val == value:
+            return key
+    return None
 		
 	# From prompts_dictionary, obtain all the values in a list called `file_names`
 	# 
