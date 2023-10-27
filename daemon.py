@@ -23,6 +23,10 @@ def launch_gui_prompt():
     subprocess.call(["python", "gui.py"])
     print(wait_message)
 
+def launch_gui_chat():
+    subprocess.call(["python", "gui-chat.py"])
+    print(wait_message)
+
 def print_intro_console():
     print('\033[1m' + "Welcome to VecchioGPT!" + '\033[0m')
     print("")
@@ -56,6 +60,7 @@ if __name__ == "__main__":
     keyboard.add_hotkey("ctrl+shift+0", lambda: launch_numeral_prompt(0))
     keyboard.add_hotkey("ctrl+shift+*", launch_gui_prompt)
     keyboard.add_hotkey("ctrl+shift+-", functions.next_model)
+    keyboard.add_hotkey("ctrl+shift+/", launch_gui_chat)
     keyboard.wait()
 
 
