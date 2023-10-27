@@ -303,6 +303,10 @@ class VecchioGPTGUI:
         # Get string from clipboard
         clipboardContents = pyperclip.paste()
         global_response = functions.chat_with_gpt(self.prompts_dictionary.get(self.temp_prompt_name), self.data, clipboardContents)
+
+        # Update history file with last selected prompt
+        functions.history_put_on_top(self.prompts_dictionary.get(self.temp_prompt_name), self.history)
+
         # print(f"self.data: {self.data}")
         pyperclip.copy(global_response)
         

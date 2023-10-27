@@ -127,6 +127,24 @@ def play_sound(file_name):
 	play_obj.volume = 0.5  # Set volume to half the maximum
 	play_obj.wait_done()  # Wait for the sound to finish playing
 
+"""
+Updates the history file by placing a specific filename at the top.
+
+Args:
+    filename (str): The name of the file to be placed at the top of the history.
+    path_to_history (str): The file path to the history file.
+"""
+def history_put_on_top(filename, path_to_history):
+    with open(path_to_history, 'r') as file:
+        lines = file.readlines()
+
+    lines = [line for line in lines if line.strip("\n") != filename]
+    lines.insert(0, filename + "\n")
+
+    with open(path_to_history, 'w') as file:
+        file.writelines(lines)
+	
+
 '''
 Returns the prompts sorted by the history and fixes the history file (purge inexistent files in history, add new files which were not present)
 '''
@@ -153,10 +171,7 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 		for name in history_filenames:
 			file.write(name + "\n")
 
-	# Get list of promptnames given file name
-	tuples = prompts_dictionary.items()
-	# prompts = list(prompts_dictionary.keys())
-	# filenames = list(prompts_dictionary.values())
+	# Generates the sorted prompts list from sorted file list
 	sorted_promptnames = []
 	for filename in history_filenames:
 		sorted_promptnames.append(find_key(prompts_dictionary, filename))
@@ -170,30 +185,6 @@ def find_key(dictionary, value):
         if val == value:
             return key
     return None
-		
-	# From prompts_dictionary, obtain all the values in a list called `file_names`
-	# 
-	# Our goal is to sort the values of `file_names` based on their most recent use:
-	# - Read history file, which is a file containing a file name for each row.
-	# - Check where each filename in `file_names` is located as row in the history file and save it in a list
-	# - If the filename is not present, give it the largest number possible
-	
-	# file_names = list(prompts_dictionary.values())
-	# file_locations = []
-
-	# with open(path_to_history, 'r') as file:
-	# 	for line in file:
-	# 		filename = line.strip()
-	# 		if filename in file_names:
-	# 			file_locations.append(file_names.index(filename))
-	# 		else:
-	# 			file_locations.append(float('inf'))
-	
-	
-
-
-	# return list(prompts_dictionary.keys())
-
 
 #####################################################################################
 #                               Citation fixer                                      #
