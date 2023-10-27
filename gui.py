@@ -19,17 +19,15 @@ def popup_notification(message, expire_time=1500):
     if sys.platform.startswith('darwin'):
         os.system(f"osascript -e 'display notification \"{message}\" with title \"Notification\"'")
     elif sys.platform.startswith('win'):
-        os.system(f"powershell -Command \"Add-Type -TypeDefinition @'\
-                using System; \
-                using System.Runtime.InteropServices; \
-                public class MessageBox {{ \
-                    [DllImport(\"user32.dll\", SetLastError = true)] \
-                    public static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type); \
-                    public static void Show(string message) {{ \
-                        MessageBox(IntPtr.Zero, message, \"Notification\", 0x40); \
-                    }} \
-                }} \
-            '@; [MessageBox]::Show('{message}')\"")
+        from win10toast import ToastNotifier
+        toast = ToastNotifier()
+        toast.show_toast(
+            "VecchioGPT",
+            message,
+            duration = expire_time/1000,
+            threaded = True
+        )
+
     else:
         print(message)
 
