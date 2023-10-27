@@ -158,7 +158,7 @@ class VecchioGPTGUI:
 
         # print(f"possible_prompts: {self.possible_prompts}\n")
         # print(f"prompts_dictionary: {self.prompts_dictionary}\n")
-        self.possible_prompts = functions.sort_prompts_history(self.possible_prompts, f'{self.prompts_directory}/{self.history}')
+        self.possible_prompts = functions.get_sorted_history(self.prompts_dictionary, self.history)
 
         for prompt in self.possible_prompts:
             self.listbox.insert(tk.END, prompt)
