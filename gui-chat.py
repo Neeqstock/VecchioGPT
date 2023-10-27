@@ -14,7 +14,7 @@ class ChatGUI:
 		self.root.title("VecchioGPT Chat")
 		# Get encoder for calculating tokens in each request
 		self.encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
-		self.root.geometry("800x600")
+		# self.root.geometry("800x600")
 
 		entry_font = ("Montserrat", 13)
 		self.chat_text_history = ""
