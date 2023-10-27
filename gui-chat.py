@@ -68,14 +68,11 @@ class ChatGUI:
 	def get_chatgpt_response(self, user_input):
 			try:
 				tokens_in_input = len(self.encoder.encode(user_input))
-				print(tokens_in_input)
 				available_other_tokens = 4096 - tokens_in_input
-				print(available_other_tokens)
 				tokenized_chat_text_history = self.encoder.encode(self.chat_text_history)
 				if len(tokenized_chat_text_history) > available_other_tokens:
 					self.chat_text_history = self.encoder.decode(tokenized_chat_text_history[-available_other_tokens:])
 				truncated_chat_text_history = self.chat_text_history
-				print(truncated_chat_text_history)
 
 				input_with_previous_messages = "Current request:" + user_input + "\n\n" + truncated_chat_text_history
 				response = openai.ChatCompletion.create(

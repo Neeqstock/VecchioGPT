@@ -160,8 +160,7 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 
 
 	files_in_folder = list(prompts_dictionary.values())
-	print("files_in_folder", files_in_folder)
-	print("\n")
+
 	# purging all the elements in history_filenames which are not present in files_in_folder
 	history_filenames = [filename for filename in history_filenames if filename in files_in_folder]
 
@@ -179,8 +178,6 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 	sorted_promptnames = []
 	for filename in history_filenames:
 		sorted_promptnames.append(find_key(prompts_dictionary, filename))
-		
-	print("sorted_promptnames", sorted_promptnames)
 
 	return sorted_promptnames
 
