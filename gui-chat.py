@@ -43,6 +43,8 @@ class ChatGUI:
 		# Start a timer to periodically check for new responses
 		self.root.after(100, self.check_responses)
 
+		self.show_window()
+
 	def update_message_history(self, message, type):
 		self.chat_text_history += f"Previous {type} message:\n" + message + "\n\n"
 
