@@ -114,6 +114,20 @@ class ChatGUI:
 		# Schedule the method to run again after 100 milliseconds
 		self.root.after(100, self.check_responses)
 
+	def show_window(self):
+		"""
+		Shows the GUI window.
+		"""
+		self.bring_to_front()
+		
+	def bring_to_front(self):
+		"""
+		Brings the GUI window to the front.
+		"""
+		self.root.lift()
+		self.root.attributes('-topmost', True)
+		self.root.after_idle(self.root.attributes, '-topmost', False)
+
 if __name__ == "__main__":
 	root = tk.Tk()
 	chat_gui = ChatGUI(root)

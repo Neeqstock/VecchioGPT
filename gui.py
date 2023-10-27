@@ -163,14 +163,6 @@ class VecchioGPTGUI:
         for prompt in self.possible_prompts:
             self.listbox.insert(tk.END, prompt)
 
-    def bring_to_front(self):
-        """
-        Brings the GUI window to the front.
-        """
-        self.root.lift()
-        self.root.attributes('-topmost', True)
-        self.root.after_idle(self.root.attributes, '-topmost', False)
-
     def on_search(self, event):
         """
         Handles the search event and updates the listbox with matching prompts.
@@ -383,6 +375,13 @@ class VecchioGPTGUI:
         """
         frame.destroy()
 
+    def show_window(self):
+        """
+        Shows the GUI window.
+        """
+        self.bring_to_front()
+        self.root.mainloop()
+        
     def bring_to_front(self):
         """
         Brings the GUI window to the front.
@@ -390,13 +389,6 @@ class VecchioGPTGUI:
         self.root.lift()
         self.root.attributes('-topmost', True)
         self.root.after_idle(self.root.attributes, '-topmost', False)
-
-    def show_window(self):
-        """
-        Shows the GUI window.
-        """
-        self.bring_to_front()
-        self.root.mainloop()
 
 
 if __name__ == "__main__":
