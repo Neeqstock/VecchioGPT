@@ -34,6 +34,12 @@ Install dependencies using pip:
 pip3 install sv-ttk thefuzz pyperclip pillow termcolor simpleaudio openai pynput keyboard tiktoken
 ```
 
+If you'd like to get Windows 11 notifications working (such option should be specified in the Settings.json file) you'll also need to install this dependency:
+
+```bash
+pip3 install win11toaster
+```
+
 ## Usage
 
 - Ensure the required dependencies are installed.
