@@ -157,7 +157,7 @@ def get_sorted_history(prompts_dictionary, path_to_history):
 			file.write(name + "\n")
 
 	# Get list of promptnames given file name
-	sorted_promptnames = [filename for filename in history_filenames if filename in prompts_dictionary.values()]
+	sorted_promptnames = [prompt for prompt, filename in prompts_dictionary.items() if filename in history_filenames]
 	print("sorted_promptnames", sorted_promptnames)
 
 	return sorted_promptnames
