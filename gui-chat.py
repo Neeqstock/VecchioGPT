@@ -5,25 +5,26 @@ import openai
 import pyperclip
 import functions
 import sv_ttk
+import tiktoken
 
 
 class ChatGUI:
 	def __init__(self, root):
 		self.root = root
 		self.root.title("VecchioGPT Chat")
+		# Get encoder for calculating tokens in each request
+		self.encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
 		self.root.geometry("800x600")
 
 		entry_font = ("Montserrat", 13)
+		self.chat_text_history = ""
 		self.chat_history = Text(root, wrap="word", state="disabled", font = entry_font)
-		# self.scrollbar = Scrollbar(root, command=self.chat_history.yview)
-		# self.chat_history['yscrollcommand'] = self.scrollbar.set
 
 		# Create the chat input box with indentation and without border
 		self.chat_input = Entry(root, width=50, bd=0, insertwidth=4, font = entry_font)
 		self.send_button = Button(root, text="Send", command=self.send_message, font=entry_font)
 
 		self.chat_history.pack(expand=True, fill="both")
-		# self.scrollbar.pack(side="right", fill="y")
 		self.chat_input.pack(side="left", expand=True, fill="x")
 		self.send_button.pack(side="right")
 		sv_ttk.set_theme("dark")
@@ -41,6 +42,9 @@ class ChatGUI:
 
 		# Start a timer to periodically check for new responses
 		self.root.after(100, self.check_responses)
+
+	def update_message_history(self, message, type):
+		self.chat_text_history += f"Previous {type} message:\n" + message + "\n\n"
 
 	def append_message(self, message):
 		self.chat_history.config(state="normal")
@@ -61,18 +65,30 @@ class ChatGUI:
 
 	def get_chatgpt_response(self, user_input):
 			try:
+				tokens_in_input = len(self.encoder.encode(user_input))
+				print(tokens_in_input)
+				available_other_tokens = 4096 - tokens_in_input
+				print(available_other_tokens)
+				tokenized_chat_text_history = self.encoder.encode(self.chat_text_history)
+				if len(tokenized_chat_text_history) > available_other_tokens:
+					self.chat_text_history = self.encoder.decode(tokenized_chat_text_history[-available_other_tokens:])
+				truncated_chat_text_history = self.chat_text_history
+				print(truncated_chat_text_history)
+
+				input_with_previous_messages = "Current request:" + user_input + "\n\n" + truncated_chat_text_history
 				response = openai.ChatCompletion.create(
 					model="gpt-3.5-turbo",
 
 					messages=[
-						{"role": "system", "content": "You are a helpful assistant."},
-						{"role": "user", "content": user_input},
+						{"role": "system", "content": "Continue the conversation below. Pay special attention to the current request."},
+						{"role": "user", "content": input_with_previous_messages},
 					],
 				)
 
 				chatgpt_reply = response.choices[0].message["content"]
 
-				# Append the response immediately
+				self.update_message_history(user_input, "User")
+				self.update_message_history(chatgpt_reply, "ChatGPT")
 				self.append_message(f"ChatGPT: {chatgpt_reply}")
 				pyperclip.copy(chatgpt_reply)  # Copy to clipboard
 
