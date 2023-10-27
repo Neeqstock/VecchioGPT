@@ -127,6 +127,10 @@ def play_sound(file_name):
 	play_obj.volume = 0.5  # Set volume to half the maximum
 	play_obj.wait_done()  # Wait for the sound to finish playing
 
+
+#####################################################################################
+#                         Listbox prompts order using history						#
+#####################################################################################
 """
 Updates the history file by placing a specific filename at the top.
 
