@@ -40,7 +40,7 @@ def print_intro_console():
         print("CTRL + SHIFT + " + str(i) + ": " + data['promptName'])
     print("")
     print("CTRL + SHIFT + *: calls the fuzzy prompt selector GUI")
-    print("CTRL + SHIFT + /: calls the same GUI, but with chat capabilities")
+    print("CTRL + SHIFT + .: calls the same GUI, but with chat capabilities")
     print("")
     print("=============================================")
     print("")
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     keyboard.add_hotkey("ctrl+shift+0", lambda: launch_numeral_prompt(0))
     keyboard.add_hotkey("ctrl+shift+*", launch_gui_prompt)
     keyboard.add_hotkey("ctrl+shift+-", functions.next_model)
-    keyboard.add_hotkey("ctrl+shift+/", launch_gui_chat)
+    keyboard.add_hotkey("ctrl+shift+.", launch_gui_chat)
     keyboard.wait()
 
 
