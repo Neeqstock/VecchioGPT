@@ -166,3 +166,4 @@ VecchioGPT.bat
 *.pyc
 __pycache__/functions.cpython-310.pyc
 /settings.json
+/.history
