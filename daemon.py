@@ -40,6 +40,7 @@ def print_intro_console():
         print("CTRL + SHIFT + " + str(i) + ": " + data['promptName'])
     print("")
     print("CTRL + SHIFT + *: calls the fuzzy prompt selector GUI")
+    print("CTRL + SHIFT + /: calls the same GUI, but with chat capabilities")
     print("")
     print("=============================================")
     print("")
