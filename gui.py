@@ -19,14 +19,15 @@ def popup_notification(message, expire_time=1500):
     if sys.platform.startswith('darwin'):
         os.system(f"osascript -e 'display notification \"{message}\" with title \"Notification\"'")
     elif sys.platform.startswith('win'):
-        from win10toast import ToastNotifier
-        toast = ToastNotifier()
-        toast.show_toast(
-            "VecchioGPT",
-            message,
-            duration = expire_time/1000,
-            threaded = True
-        )
+        from win11toast import notify
+        notify("VecchioGPT: " + message)
+        # toast = ToastNotifier()
+        # toast.show_toast(
+        #     "VecchioGPT",
+        #     message,
+        #     duration = expire_time/1000,
+        #     threaded = True
+        # )
 
     else:
         print(message)
@@ -379,7 +380,7 @@ class VecchioGPTGUI:
         """
         self.bring_to_front()
         self.root.mainloop()
-        
+
     def bring_to_front(self):
         """
         Brings the GUI window to the front.
