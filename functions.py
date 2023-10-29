@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 import openai
-import pyperclip
 import os
 import simpleaudio as sa
 import json
 from termcolor import colored
-import hashlib
 import re
 
 

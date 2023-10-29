@@ -10,7 +10,6 @@ import functions
 import pyperclip
 import sv_ttk
 from PIL import ImageTk, Image
-import codecs
 
 # sv_ttk.set_theme("dark")
 def popup_notification(message, expire_time=1500):
