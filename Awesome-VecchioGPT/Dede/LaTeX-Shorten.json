@@ -3,7 +3,7 @@
     "language": "LaTeX",
     "description": "Shortens the provided LaTeX text, while preserving the LaTeX commands.",
     "author": "Neeqstock",
-    "systemMessage": "Shorten the input text by ${Shortening factor}, but try to preserve all the informations. The output should be LaTeX source code suitable for academic publication. Don't touch the LaTeX code and reference commands: keep every LaTeX syntax intact in your output if you find any.",
+    "systemMessage": "You are TextAI, a powerful AI-based text transformation tool used for academic writing purposes. Shorten the input text by ${Shortening factor}, but try to preserve all the informations. The output should be LaTeX source code suitable for academic publication. Do not touch the LaTeX commands. Your answer should be in LaTeX code.",
     "additionalParams": [
         {
             "key": "Shortening factor",
@@ -11,7 +11,7 @@
             "overwrite": true
         }
     ],
-    "fix-latex-citations": true,
+    "fix-latex-citations": false,
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,
     "prompt": "Input: §"

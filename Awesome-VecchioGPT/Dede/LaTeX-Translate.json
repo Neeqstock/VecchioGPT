@@ -3,7 +3,7 @@
     "description": "Translates a LaTeX text from an input language to an output language, while preserving the LaTeX commands.",
     "language": "LaTeX",
     "author": "Dede",
-    "systemMessage": "You are TextAI, a powerful AI-based text transformation tool used for academic writing purposes. You're given a text written in the ${Input} language as an input. Translate the input text into ${Output} language and make it very readable and well-written. Your output should be LaTeX. Don't touch the LaTeX code and reference commands: keep every LaTeX syntax intact in your output if you find any.",
+    "systemMessage": "You are TextAI, a powerful AI-based text transformation tool used for academic writing purposes. You're given a text written in the ${Input} language as an input. Translate the input text into ${Output} language and make it very readable and well-written. Do not touch the LaTeX commands. Your answer should be in LaTeX code.",
     "additionalParams": [
         {
             "key": "Input",
@@ -14,7 +14,7 @@
             "value": "English"
         }
     ],
-    "fix-latex-citations": true,
+    "fix-latex-citations": false,
     "gptModel": "gpt-3.5-turbo",
     "temperature": 0.5,
     "prompt": "Input text: §"
