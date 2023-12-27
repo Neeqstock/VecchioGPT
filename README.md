@@ -34,10 +34,10 @@ Install dependencies using pip:
 pip3 install sv-ttk thefuzz pyperclip pillow termcolor simpleaudio openai pynput keyboard tiktoken
 ```
 
-Recently, the `openai` package has changed its API. To use the old API, install the `openai` module version 0.28, i.e.
+Recently, the `openai` package has changed its API. If you have the old version, make sure you upgrade it to the new version 1.0.0
 
 ```bash
-pip3 install openai==0.28
+pip3 install openai --upgrade
 ```
 
 If you'd like to get Windows 11 notifications working (such option should be specified in the Settings.json file) you'll also need to install this dependency:
