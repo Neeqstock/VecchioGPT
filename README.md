@@ -123,16 +123,16 @@ python3 gui.py
 
 Keyboard shortcuts can be edited in the `shortcuts.json` file. Here's a list of the default shortcuts:
 
-- CTRL + SHIFT + ALT + *: call the prompt selection GUI
-- CTRL + SHIFT + ALT + .: stops audio playback or recording
-- CTRL + SHIFT + ALT + -: switches to the next model
-- CTRL + SHIFT + ALT + 1: records an audio and uses it as a request (using clipboard content as context)
-- CTRL + SHIFT + ALT + 2: records an audio and uses it as a prompt (without using clipboard content as context)
-- CTRL + SHIFT + ALT + 3: records an audio, transcribe, and simply put the text on clipboard
-- CTRL + SHIFT + ALT + 4: reads the contents of the clipboard out loud
-- CTRL + SHIFT + ALT + 9: calls the settings GUI
-- F4: (while in the prompt selection GUI) edit the currently selected prompt
-- F6: (while in the prompt selection GUI) create a new prompt, which will be named "example_prompt"
+- `CTRL + SHIFT + ALT + *`: call the prompt selection GUI
+- `CTRL + SHIFT + ALT + .`: stops audio playback or recording
+- `CTRL + SHIFT + ALT + -`: switches to the next model
+- `CTRL + SHIFT + ALT + 1`: records an audio and uses it as a request (using clipboard content as context)
+- `CTRL + SHIFT + ALT + 2`: records an audio and uses it as a prompt (without using clipboard content as context)
+- `CTRL + SHIFT + ALT + 3`: records an audio, transcribe, and simply put the text on clipboard
+- `CTRL + SHIFT + ALT + 4`: reads the contents of the clipboard out loud
+- `CTRL + SHIFT + ALT + 9`: calls the settings GUI
+- `F4`: (while in the prompt selection GUI) edit the currently selected prompt
+- `F6`: (while in the prompt selection GUI) create a new prompt, which will be named "example_prompt"
 
 ## Sample prompts
 
