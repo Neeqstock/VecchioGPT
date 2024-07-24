@@ -85,6 +85,11 @@ Use cases
    pip3 install win11toaster
    ```
 
+4. (Optional, for Windows users) **Add a start menu shortcut**
+
+  We included an icon, which you can find under the name `VecchioGPT.ico`.
+  You can use that to make a custom link to `VecchioGPT.bat` and add it to your start menu links.
+
 ## First run
 
 In order to create the settings files, please run: 
