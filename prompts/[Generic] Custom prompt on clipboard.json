@@ -7,7 +7,7 @@
     "additionalParams": [
         {
             "key": "Prompt",
-            "value": "Generate a long gibberish text",
+            "value": "Enclose the shortcut in `` markdown code",
             "overwrite": true
         }
     ],

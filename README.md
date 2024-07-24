@@ -84,15 +84,19 @@ Use cases
    pip3 install win11toaster
    ```
 
-# 
+## First run
 
-## Usage
+In order to create the settings files, please run: 
+- `CreateSettings.bat` if you are on Windows
+- `CreateSettings.sh` if you are on Linux
 
-- Grab an OpenAI API key from [OpenAI API dashboard](https://platform.openai.com/api-keys). Add your OpenAI API key to the _Settings.json_ file:
+Then, create an OpenAI API key from your [OpenAI API dashboard](https://platform.openai.com/api-keys). Copy the OpenAI API key into the _Settings.json_ file:
 
-```bash
+```json
 OPENAI_API_KEY=<your-OpenAI-key>
 ```
+
+## Usage
 
 - Copy some text using CTRL+C
 - Open the VecchioGPT prompt selection GUI
@@ -105,18 +109,14 @@ OPENAI_API_KEY=<your-OpenAI-key>
 
 There are two ways to call the prompt selection GUI:
 
-**Method 1: single launch**
+**Method 1: background daemon with hotkeys**
 
-- Run gui.py:
-
-```bash
-python3 gui.py
-```
-
-**Method 2: background daemon with hotkeys**
-
-- Run _daemon.py_ (you can reduce to icon the script console)
+- Run `VecchioGPT.bat` if you are on Windows, or `VecchioGPT.sh` if you are on Linux. Read the indications in the console, which you can then reduce to icon if you'd like
 - Press the default keyboard shortcut assigned to call the prompt selection GUI
+
+**Method 2: single launch**
+
+- Run `VecchioGPT_GUI.bat` if you are on Windows, or `VecchioGPT.sh` if you are on Linux
 
 ## Sample prompts
 

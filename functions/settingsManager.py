@@ -104,6 +104,36 @@ def load_shortcuts(filename) -> dict:
     return {item["action"]: item["key"] for item in data["shortcuts"]}
 
 
+def create_configs():
+    # Create history if it doesn't exist
+    if not os.path.exists(HISTORY_FILENAME):
+        with open(HISTORY_FILENAME, "w") as f:
+            pass
+
+    # If the settings file does not exist, copy it from the templates folder
+    if not os.path.exists(SETTINGS_FILENAME):
+        with open(SETTINGS_FILENAME, "w") as f:
+            with open(
+                os.path.join(TEMPLATES_FOLDER, "settings_template.json"), "r"
+            ) as template:
+                f.write(template.read())
+
+    # If the shortcuts file does not exist, copy it from the templates folder
+    if not os.path.exists(SHORTCUTS_FILENAME):
+        with open(SHORTCUTS_FILENAME, "w") as f:
+            with open(
+                os.path.join(TEMPLATES_FOLDER, "shortcuts_template.json"), "r"
+            ) as template:
+                f.write(template.read())
+    # If the models file does not exist, copy it from the templates folder
+    if not os.path.exists(MODELS_FILENAME):
+        with open(MODELS_FILENAME, "w") as f:
+            with open(
+                os.path.join(TEMPLATES_FOLDER, "gpt_models_template.json"), "r"
+            ) as template:
+                f.write(template.read())
+
+
 # Filenames
 SETTINGS_FILENAME = os.path.join(os.path.dirname(__file__), "../settings.json")
 MODELS_FILENAME = os.path.join(os.path.dirname(__file__), "../gpt_models.json")
@@ -125,7 +155,8 @@ TEMPLATES_FOLDER = os.path.join(os.path.dirname(__file__), "../templates/")
 SHORTCUTS_FILENAME = os.path.join(os.path.dirname(__file__), "../shortcuts.json")
 VECCHIOGPT_LOGO_FILENAME = os.path.join(os.path.dirname(__file__), "../VecchioGPT.png")
 HISTORY_FILENAME = os.path.join(os.path.dirname(__file__), "../.history")
-# VECCHIOGPT_LOGO_IMAGE = Image.open(VECCHIOGPT_LOGO_FILENAME)  # Load the image
+
+create_configs()
 
 # Models settings
 FILE_SPECIFIC = "file_specific"
@@ -138,3 +169,7 @@ OPENAI_CLIENT = OpenAI(api_key=read_api_key(SETTINGS_FILENAME))
 
 # SHORTCUTS
 SHORTCUTS = load_shortcuts(SHORTCUTS_FILENAME)
+
+# Main that just create configs
+if __name__ == "__main__":
+    create_configs()

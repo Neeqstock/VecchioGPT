@@ -1,5 +1,0 @@
-{
-    "model": "gpt-3.5-turbo",
-    "OPENAI_API_KEY": "your-openai-api-key",
-    "notification": ["popup", "sound", "window"]
-}

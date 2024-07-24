@@ -1,4 +1,7 @@
-
+settings.json
+gpt_models.json
+.history
+shortcuts.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

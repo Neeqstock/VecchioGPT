@@ -1,0 +1,23 @@
+{
+    "promptName": "Modify Code",
+    "category": "Program",
+    "description": "Generates the code requested in the params, for the language specified in the params. Context is given by the content of the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "Modify the provided §{Language} code, following the request. Answer only with the modified code, without providing any other answer in natural language. Your responses should only be code, without explanation or formatting.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": "This image should be 700px wide",
+            "overwrite": true
+        },
+        {
+            "key": "Language",
+            "value": "markdown",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}\n\nCode to modify:\n\n§",
+    "fix-codeblocks": true
+}
