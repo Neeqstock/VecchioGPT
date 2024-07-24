@@ -164,7 +164,8 @@ In the `templates` folder you will find a sample prompt file.
 
 ## Contribute
 
-Feel free to contribute by forking the repository and creating pull requests. Bug reports and feature requests are welcome!
+Feel free to contribute by forking the repository and creating pull requests. 
+Bug reports and feature requests are welcome! However, we can't assure we will fulfill them :') VecchioGPT was created as a weekend project by two lazy dudes...
 
 ## Funny extras
 
