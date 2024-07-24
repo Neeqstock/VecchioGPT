@@ -7,6 +7,7 @@
  _System-wide GPT prompts computed on your clipboard's contents! Ghe provo però vecchio bel casino vero? Sisi, si_
 
 VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard. It is cross-platform and compatible with Windows, Linux and MacOS systems.
+
 <br/><br/>
 <div align="center">
 <img src="docs/vecchio_gui.png" width="700">
@@ -123,21 +124,6 @@ There are two ways to call the prompt selection GUI:
 When you will clone VecchioGPT, the prompts folder will be almost empty. In the `Awesome-VecchioGPT` folder you will find a list of curated prompts which you can copy in the `prompts` folder.
 You can take inspiration from these to create new ones!
 
-### Keyboard shortcuts
-
-Keyboard shortcuts can be edited in the `shortcuts.json` file. Here's a list of the default shortcuts:
-
-- CTRL + SHIFT + ALT + *: call the prompt selection GUI
-- CTRL + SHIFT + ALT + .: stops audio playback or recording
-- CTRL + SHIFT + ALT + -: switches to the next model
-- CTRL + SHIFT + ALT + 1: records an audio and uses it as a request (using clipboard content as context)
-- CTRL + SHIFT + ALT + 2: records an audio and uses it as a prompt (without using clipboard content as context)
-- CTRL + SHIFT + ALT + 3: records an audio, transcribe, and simply put the text on clipboard
-- CTRL + SHIFT + ALT + 4: reads the contents of the clipboard out loud
-- CTRL + SHIFT + ALT + 9: calls the settings GUI
-- F4: (while in the prompt selection GUI) edit the currently selected prompt
-- F6: (while in the prompt selection GUI) create a new prompt, which will be named "example_prompt"
-
 ## Models
 
 Model names can be edited in the `gpt_models.json` file. Sometimes OpenAI adds new ones, you can add them in this list.
@@ -172,7 +158,7 @@ On OpenAI websites you can find a list of [models](https://platform.openai.com/d
 
 ## Making new custom prompts
 
-Creating new VecchioGPT prompts is very easy. See the [prompt creation guide](./docs/prompt_creation_guide.md)
+Creating new VecchioGPT prompts is very easy, through a very simple syntax. See the [prompt creation guide](./docs/prompt_creation_guide.md).
 It's greatly advised not to create two prompts with the same _promptName_.
 In the `templates` folder you will find a sample prompt file.
 
