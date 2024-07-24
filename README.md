@@ -87,8 +87,8 @@ Use cases
 
 4. (Optional, for Windows users) **Add a start menu shortcut**
 
-  We included an icon, which you can find under the name `VecchioGPT.ico`.
-  You can use that to make a custom link to `VecchioGPT.bat` and add it to your start menu links.
+   We included an icon, which you can find under the name `VecchioGPT.ico`.
+   You can use that to make a custom link to `VecchioGPT.bat` and add it to your start menu links.
 
 ## First run
 
