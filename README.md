@@ -7,6 +7,7 @@
  _System-wide GPT prompts computed on your clipboard's contents! Ghe provo però vecchio bel casino vero? Sisi, si_
 
 VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard. It is cross-platform and compatible with Windows, Linux and MacOS systems.
+
 <br/><br/>
 <div align="center">
 <img src="docs/vecchio_gui.png" width="700">
@@ -118,12 +119,7 @@ python3 gui.py
 - Run _daemon.py_ (you can reduce to icon the script console)
 - Press the default keyboard shortcut assigned to call the prompt selection GUI
 
-## Sample prompts
-
-When you will clone VecchioGPT, the prompts folder will be almost empty. In the `Awesome-VecchioGPT` folder you will find a list of curated prompts which you can copy in the `prompts` folder.
-You can take inspiration from these to create new ones!
-
-### Keyboard shortcuts
+## Keyboard shortcuts
 
 Keyboard shortcuts can be edited in the `shortcuts.json` file. Here's a list of the default shortcuts:
 
@@ -137,6 +133,11 @@ Keyboard shortcuts can be edited in the `shortcuts.json` file. Here's a list of 
 - CTRL + SHIFT + ALT + 9: calls the settings GUI
 - F4: (while in the prompt selection GUI) edit the currently selected prompt
 - F6: (while in the prompt selection GUI) create a new prompt, which will be named "example_prompt"
+
+## Sample prompts
+
+When you will clone VecchioGPT, the prompts folder will be almost empty. In the `Awesome-VecchioGPT` folder you will find a list of curated prompts which you can copy in the `prompts` folder.
+You can take inspiration from these to create new ones!
 
 ## Models
 
@@ -172,7 +173,7 @@ On OpenAI websites you can find a list of [models](https://platform.openai.com/d
 
 ## Making new custom prompts
 
-Creating new VecchioGPT prompts is very easy. See the [prompt creation guide](./docs/prompt_creation_guide.md)
+Creating new VecchioGPT prompts is very easy, through a very simple syntax. See the [prompt creation guide](./docs/prompt_creation_guide.md).
 It's greatly advised not to create two prompts with the same _promptName_.
 In the `templates` folder you will find a sample prompt file.
 
