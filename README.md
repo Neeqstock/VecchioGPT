@@ -61,6 +61,7 @@ Use cases
      ```bash
      venv\Scripts\activate
      ```
+   
    - On macOS and Linux:
      
      ```bash
@@ -128,7 +129,7 @@ Keyboard shortcuts can be edited in the `shortcuts.json` file. Here's a list of 
 - CTRL + SHIFT + ALT + 4: reads the contents of the clipboard out loud
 - CTRL + SHIFT + ALT + 9: calls the settings GUI
 - F4: (while in the prompt selection GUI) edit the currently selected prompt
-- F6: (while in the prompt selection GUI)
+- F6: (while in the prompt selection GUI) create a new prompt, which will be named "example_prompt"
 
 ## Models
 
@@ -137,9 +138,10 @@ Model names can be edited in the `gpt_models.json` file. Sometimes OpenAI adds n
 ## Complexity
 
 OpenAI released lots of different models with different context length, cost, and reasoning capacity. Since different prompts require different reasoning capacities, we implemented a way to define the required computational capacity for each prompt. Each prompt JSON file has a `complexity` field which can be set on three different values:
-  - `low` is for low-complexity computations, which require cheaper models with less reasoning power. If the complexity field is absent in the prompt JSON, this will be the default.
-  - `high` is for high-complexity computations, which require more expensive models with more reasoning power.
-  - `long` is for computation which require a high number of input and/or output tokens.
+
+- `low` is for low-complexity computations, which require cheaper models with less reasoning power. If the complexity field is absent in the prompt JSON, this will be the default.
+- `high` is for high-complexity computations, which require more expensive models with more reasoning power.
+- `long` is for computation which require a high number of input and/or output tokens.
 
 ## Settings
 
