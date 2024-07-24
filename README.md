@@ -78,12 +78,6 @@ Use cases
    ```bash
    pip install -r requirements.txt
    ```
-   
-   If you'd like to get Windows 11 notifications working (such option should be specified in the Settings.json file) you'll also need to install this dependency:
-   
-   ```bash
-   pip3 install win11toaster
-   ```
 
 4. (Optional, for Windows users) **Add a start menu shortcut**
 
