@@ -1,0 +1,17 @@
+{
+    "promptName": "Shorten to percentage",
+    "category": "Text",
+    "description": "Shorten the text to the given words number, trying not to lose informations.",
+    "author": "Neeqstock",
+    "systemMessage": "You're an AI tool used to shorten texts. Shorten the given text according to the first command.",
+    "additionalParams": [
+        {
+            "key": "Percentage",
+            "value": "60",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "This text is too long. Shorten it so it will be long just §{Percentage}% of the original text. Try to keep all the informations as possible.\n\n§",
+    "complexity": "long"
+}

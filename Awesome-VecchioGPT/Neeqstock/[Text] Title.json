@@ -1,0 +1,10 @@
+{
+    "promptName": "Title",
+    "category": "Text",
+    "description": "Finds a short title for the text in the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "Find a title by summarizing the provided text in 5 words or fewer. Be as concise as possible without losing the context of the text. Your goal is to extract the key point. The title should be in the same language as the text. Do not put a period at the end.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

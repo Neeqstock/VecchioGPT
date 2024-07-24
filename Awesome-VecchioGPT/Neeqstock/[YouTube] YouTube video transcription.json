@@ -1,0 +1,10 @@
+{
+    "promptName": "Summarize transcription",
+    "category": "YouTube",
+    "description": "Summarizes the transcript of a YouTube video.",
+    "author": "Neeqstock",
+    "systemMessage": "This is the transcription (subtitles) of a YouTube video. Summarize the contents, making them into a well-written and comprehensible short essay.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

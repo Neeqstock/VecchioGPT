@@ -1,0 +1,13 @@
+sv-ttk
+thefuzz
+pyperclip
+pillow
+termcolor
+simpleaudio
+openai
+pynput
+keyboard
+tiktoken
+pyaudio
+python-vlc
+plyer

@@ -1,0 +1,18 @@
+{
+    "promptName": "Documentation",
+    "category": "Program",
+    "description": "Generates documentation for the code in the clipboard, in the language specified in the parameters",
+    "author": "Neeqstock",
+    "systemMessage": "Generate §{Language} documentation for the code which I provide you. The code is written in §{Language}. Answer only with both the code and the documentation. Do not include any other answer in natural language. Use the correct syntax for §{Language} documentation entries. Your documentation should be meaningful, and describe what the code does at a high level. Most importantly: do not modify, refactor or change the code, do not apply any modification to the code I send you. Just add the documentation to it. If any documentation is already present, use it as inspiration, and if needed, rewrite it better by fixing grammar and other stuff (but try to stay loyal to the original formulation).",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "C#",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§",
+    "fix-codeblocks": true,
+    "complexity": "long"
+}

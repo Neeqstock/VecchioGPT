@@ -1,0 +1,10 @@
+{
+    "promptName": "Draft to Slide content",
+    "category": "Text",
+    "description": "Transforms the contents of the clipboard from a draft into a well-written text which can fit in a presentation slide.",
+    "author": "Neeqstock",
+    "systemMessage": "I'm creating some slides for my presentation. I will send you some text I've wrote haphazardly as a draft. Correct the grammar and transform it into a good text which can fit into a slide. The text must be synthetic. Use only the informations I provide you, do not add new informations to the draft.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "low"
+}

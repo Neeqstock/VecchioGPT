@@ -1,0 +1,17 @@
+{
+    "promptName": "Title (american style)",
+    "category": "Text",
+    "description": "Finds a short title for the text in the clipboard, american style (subject + predicate). Maximum words in parameters.",
+    "author": "Neeqstock",
+    "systemMessage": "Find a title by summarizing the provided text in maximum §{Words} words. Be as concise as possible without losing the context of the text. Your goal is to extract the key point. The title should be in the same language as the text. Importantly, the title should ALWAYS contain a subject and a predicate. The title should very explicative of the contents: It must convey in a single phrase the contents of the text. Capitalization of first letters should be \"sentence case\" style.",
+    "additionalParams": [
+        {
+            "key": "Words",
+            "value": "10",
+            "overwrite": false
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

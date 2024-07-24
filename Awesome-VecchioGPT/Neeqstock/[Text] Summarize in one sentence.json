@@ -1,0 +1,10 @@
+{
+    "promptName": "Summarize in one sentence",
+    "category": "Text",
+    "description": "Summarizes the text in the clipboard in one sentence",
+    "author": "Neeqstock",
+    "systemMessage": "Answer by summarizing my text inputs in just one short sentence. The sentence should be in the same language as the input.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "low"
+}

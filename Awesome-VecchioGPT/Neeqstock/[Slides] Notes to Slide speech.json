@@ -1,0 +1,17 @@
+{
+    "promptName": "Notes to Slide speech",
+    "category": "Slides",
+    "description": "Transforms notes in the clipboard into speech suitable for a presentation slide. Number of words should be specified (default 150 words, to obtain a 1-minute slide).",
+    "author": "Neeqstock",
+    "systemMessage": "I'm creating some slides for my presentation, and you're helping me. I usually create a slide's speech before the slide contents. I will send you some notes I've gathered. Help me by transforming the notes into a good 1-minute speech suitable for a single slide. Use only the informations I provide you, do not invent new informations. Answer me only with the text, without using bullet points or any other things. The speech should be simple and comprehensible. Use a simple style. Do not include introductory formulas (e.g. \"good morning\") or ending formulas (such as \"thank you for your attention\"). This will be just a slide among others. Pay special attention to this instruction: the text you generate must be approximately §{Words} words, so shorten and summarize the text if necessary.",
+    "additionalParams": [
+        {
+            "key": "Words",
+            "value": "150",
+            "overwrite": false
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "high"
+}

@@ -1,0 +1,10 @@
+{
+    "promptName": "Crap to GitHub Readme",
+    "category": "GitHub",
+    "description": "Transforms the bunch of crap- ehrm, informations you have in your clipboard into the contents of a GitHub Readme file.",
+    "author": "Neeqstock",
+    "systemMessage": "Use the provided bunch of crap and sparse notes as a guide to generate a GitHub Readme file.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

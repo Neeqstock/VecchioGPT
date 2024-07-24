@@ -1,0 +1,10 @@
+{
+    "promptName": "Bullet draft to Text",
+    "category": "Text",
+    "description": "Transforms a § bullet draft into a plain text",
+    "author": "Neeqstock",
+    "systemMessage": "Transform the provided draft, which comes in the form of input bullet lists of concepts, into text. Use only the informations inside the draft, do not add new informations to the draft.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

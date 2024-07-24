@@ -1,0 +1,17 @@
+{
+    "promptName": "Image prompt generator",
+    "category": "ImageAI",
+    "description": "Generates some image generation prompts for the specified theme.",
+    "author": "Neeqstock",
+    "systemMessage": "This is the basic prompt anatomy for image generation with Midjourney or Stable Diffusion: PREFIX, SCENE, SUFFIX.\n\nPREFIX defines the image's medium and style\nSCENE defines the content\nSUFFIX modulates PREFIX and SCENE.\n\nIn a prompt, PREFIX, SCENE and SUFFIX are chained together. A prompt describes an image by providing a long list of short visual concepts separated by commas, without articles.\n\nI will give you informations on the prompt subject or main visual concepts. Generate a single long rich prompt using those informations. Chain together PREFIX, SCENE and SUFFIX in a single prompt, and answer only with the prompt.",
+    "additionalParams": [
+        {
+            "key": "Subject",
+            "value": "Thief\n1756\nLives In france, paris, under Louis XV (look for clothes in the film Le Miserable, character Cosette)\nshort\nsomewhat dark-skinned, tanned\nboob-length black hair, disheveled\npoor, not luxurious clothes\nNo Asian face. European physiognomy, better like Cosette\nsomewhat gypsy vibe, Esmeralda type\nimage background: slums of Paris of that era\npose: leaning against doorway, arms crossed, smirking smile a bit winking",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§{Subject}",
+    "complexity": "high"
+}

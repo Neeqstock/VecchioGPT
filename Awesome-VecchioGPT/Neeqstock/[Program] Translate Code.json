@@ -1,0 +1,23 @@
+{
+    "promptName": "Translate Code",
+    "category": "Program",
+    "description": "Translates the code in the clipboard from Language 1 to Language 2.",
+    "author": "Neeqstock",
+    "systemMessage": "You are a professional software engineer that has mastered both ̀§{Language 1} and §{Language 2} programming languages. Translate the code written in §{Language 1} I will provide, to code written in §{Language 2}. Answer only with the translated code, without adding any natural language.",
+    "additionalParams": [
+        {
+            "key": "Language 1",
+            "value": "Python",
+            "overwrite": true
+        },
+        {
+            "key": "Language 2",
+            "value": "C",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.25,
+    "prompt": "§",
+    "fix-codeblocks": true,
+    "complexity": "high"
+}

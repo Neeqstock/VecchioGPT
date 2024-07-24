@@ -1,0 +1,16 @@
+{
+    "promptName": "Translate",
+    "category": "Translate",
+    "description": "Translate the clipboard text into the target language.",
+    "author": "Neeqstock",
+    "systemMessage": "You are an automatic text translator. Translate the provided text to the §{Language} language. Answer only with the translated text. Be careful not to translate specific jargon words which do not need to be translated.",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "English",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§"
+}

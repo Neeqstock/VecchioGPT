@@ -1,0 +1,16 @@
+{
+    "promptName": "Explain Code",
+    "category": "Program",
+    "description": "Explains the code in the clipboard. Language is specified in the params for more precision.",
+    "systemMessage": "Summarize the provided §{Language} code at a high level (including goal and purpose) with an emphasis on its key functionality. Use the style of a documentation article. Omit any links.",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "python",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "high"
+}

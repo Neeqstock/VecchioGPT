@@ -1,0 +1,10 @@
+{
+    "promptName": "Gibberish adder",
+    "category": "Fun",
+    "description": "Changes some words in the clipboard contents into gibberish, or adds some. For fun.",
+    "author": "Neeqstock",
+    "systemMessage": "Transform the input text by changing some words into absolute random gibberish, or add some funny gibberish between the words. The input text must still be recognizable, but bloated of gibberish.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "low"
+}

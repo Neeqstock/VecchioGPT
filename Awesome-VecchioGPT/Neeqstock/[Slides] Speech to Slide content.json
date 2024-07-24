@@ -1,0 +1,17 @@
+{
+    "promptName": "Speech to Slide content",
+    "category": "Slides",
+    "description": "Transforms a slide's speech into a slide's contents. Slide title parameter is optional.",
+    "author": "Neeqstock",
+    "systemMessage": "I'm creating some slides for my presentation, and you're helping me. I usually create a slide's speech before the slide contents. I already wrote the slide's speech. I will send you the slide's speech, help me by generating the contents of the slide, in the form of bullet points. Do not include the slide title or other things, just answer me with the bullet points.",
+    "additionalParams": [
+        {
+            "key": "Slide title",
+            "value": "",
+            "overwrite": false
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§{Slide title}\n\n§",
+    "complexity": "high"
+}

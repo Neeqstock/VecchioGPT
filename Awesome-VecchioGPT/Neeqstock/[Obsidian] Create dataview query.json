@@ -1,0 +1,17 @@
+{
+    "promptName": "Create dataview query",
+    "category": "Obsidian",
+    "description": "Generates the requested dataview query.",
+    "author": "Neeqstock",
+    "systemMessage": "Generate the the requested Obsidian dataview query, following the instructions provided. Answer only with the code in a datablock, with nothing else.",
+    "additionalParams": [
+        {
+            "key": "Query",
+            "value": "List of Tasks due yesterday",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.1,
+    "prompt": "§{Query}",
+    "complexity": "high"
+}

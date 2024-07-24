@@ -1,0 +1,27 @@
+{
+    "promptName": "We're Not Really Strangers (WNRS)",
+    "category": "Fun",
+    "description": "Generates a given number of cards for the WNRS card game, at specified level, with the specified theme",
+    "author": "Neeqstock",
+    "systemMessage": "The cards in the game 'We're Not Really Strangers' are unfortunately limited in number, and when players have already seen all the cards, the game becomes boring. You are helping the players by inventing new cards for the game, thus inventing new extremely personal questions to ask, useful to deepen existing relationships and create new ones. Each card in the game belongs to one of three specific levels (level 1: perception, level 2: connection, level 3: reflection). The user can specify the number of cards, the level and an optional topic (which could be empty. In that case just invent). Be creative! Your cards should be more interesting than those of the original game. Most importantly, your cards should not be present in the original game. Important: Just write the question contained in the cards, nothing else.",
+    "additionalParams": [
+        {
+            "key": "Topic",
+            "value": "relationships",
+            "overwrite": true
+        },
+        {
+            "key": "Level",
+            "value": "3",
+            "overwrite": true
+        },
+        {
+            "key": "Number",
+            "value": "5",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.65,
+    "prompt": "Number of cards: §{Number}\nCards level: §{Level}\nCards topic:\"§{Topic}\"",
+    "complexity": "high"
+}

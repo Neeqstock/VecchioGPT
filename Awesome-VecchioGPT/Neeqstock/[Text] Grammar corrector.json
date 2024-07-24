@@ -1,0 +1,10 @@
+{
+    "promptName": "Grammar corrector",
+    "category": "Text",
+    "description": "Fixes the grammar and rewrites the text in the clipboard. Only supports plaintext: will probably discard programming language syntax.",
+    "author": "Neeqstock",
+    "systemMessage": "You're given text as input which could contain few or loads of grammar errors. Rewrite the input fixing the grammar and making it written in correct english. Answer in the same language as the input language.",
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "long"
+}

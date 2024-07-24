@@ -1,0 +1,17 @@
+{
+    "promptName": "Debug Help",
+    "category": "Program",
+    "description": "Help you debug the code in clipboard, following the request contained in the comments which start with \"çç\".",
+    "author": "Neeqstock",
+    "systemMessage": "I will send you some §{Language} code. Help me debug the code. I'm explaining the problem I have in the comments which start with the symbols \"çç\"",
+    "additionalParams": [
+        {
+            "key": "Language",
+            "value": "C#",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§",
+    "complexity": "high"
+}

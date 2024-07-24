@@ -1,0 +1,16 @@
+{
+    "promptName": "Custom prompt on nothing",
+    "category": "Generic",
+    "description": "Applies a custom prompt, without considering the clipboard.",
+    "author": "Neeqstock",
+    "systemMessage": "You're an helpful assistant. You're helping me by answering questions.",
+    "additionalParams": [
+        {
+            "key": "Prompt",
+            "value": "Generate a short gibberish text",
+            "overwrite": true
+        }
+    ],
+    "temperature": 0.5,
+    "prompt": "§{Prompt}"
+}

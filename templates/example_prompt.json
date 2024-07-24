@@ -1,0 +1,21 @@
+{
+    "promptName": "Example prompt (listbox entry)",
+    "description": "Prompt description",
+    "author": "",
+    "category": "",
+    "systemMessage": "Modify the provided §{Programming language} code, according to the request. Answer only with the modified code, without providing any other answer in natural language.",
+    "additionalParams": [
+        {
+            "key": "Request",
+            "value": ""
+        },
+        {
+            "key": "Programming language",
+            "value": "C++",
+            "overwrite": true
+        }
+    ],
+    "gptModel": "gpt-4o-mini",
+    "temperature": 0.5,
+    "prompt": "Request: §{Request}\n\nCode to modify:\n\n§"
+}
