@@ -11,8 +11,10 @@ VecchioGPT is a Python application that allows users to apply custom GPT prompts
 ![Demo video](https://youtu.be/RzkoxAGxQ78?si=vViWaxnvo0UoJjND)
 
 <br/>
+<div align="center">
 <img src="docs/vecchio_console.png" width="500"/>
 <img src="docs/vecchio_gui.png" width="500"/>
+</div>
 
 ## OpenAI API
 
