@@ -8,10 +8,11 @@
 
 VecchioGPT is a Python application that allows users to apply custom GPT prompts to the text stored in the system clipboard. It is cross-platform and compatible with Windows, Linux and MacOS systems.
 
+![Demo video](https://youtu.be/RzkoxAGxQ78?si=vViWaxnvo0UoJjND)
+
 <br/><br/>
-<div align="center">
-<img src="docs/vecchio_gui.png" width="700">
-</div>
+<img src="docs/vecchio_console.png" width="500"/>
+<img src="docs/vecchio_gui.png" width="500"/>
 
 ## OpenAI API
 
