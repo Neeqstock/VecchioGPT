@@ -1,48 +1,48 @@
 {
 	"shortcuts": [
 		{
-			"action": "ctrl+shift+alt+*",
-			"key": "key_gui_prompt"
+			"key": "ctrl+shift+alt+*",
+			"action": "key_gui_prompt"
 		},
 		{
-			"action": "ctrl+shift+alt+-",
-			"key": "key_next_model"
+			"key": "ctrl+shift+alt+-",
+			"action": "key_next_model"
 		},
 		{
-			"action": "ctrl+shift+alt+1",
-			"key": "key_speech_prompt_clipboard"
+			"key": "ctrl+shift+alt+1",
+			"action": "key_speech_prompt_clipboard"
 		},
 		{
-			"action": "ctrl+shift+alt+2",
-			"key": "key_speech_prompt_nothing"
+			"key": "ctrl+shift+alt+2",
+			"action": "key_speech_prompt_nothing"
 		},
 		{
-			"action": "ctrl+shift+alt+3",
-			"key": "key_speech_clipboard"
+			"key": "ctrl+shift+alt+3",
+			"action": "key_speech_clipboard"
 		},
 		{
-			"action": "ctrl+shift+alt+4",
-			"key": "key_tts"
+			"key": "ctrl+shift+alt+4",
+			"action": "key_tts"
 		},
 		{
-			"action": "ctrl+shift+alt+.",
-			"key": "key_abort"
+			"key": "ctrl+shift+alt+.",
+			"action": "key_abort"
 		},
 		{
-			"action": "ctrl+shift+alt+0",
-			"key": "key_end_record"
+			"key": "ctrl+shift+alt+0",
+			"action": "key_end_record"
 		},
 		{
-			"action": "ctrl+shift+alt+9",
-			"key": "key_settings"
+			"key": "ctrl+shift+alt+9",
+			"action": "key_settings"
 		},
 		{
-			"action": "<F4>",
-			"key": "key_edit_prompt"
+			"key": "<F4>",
+			"action": "key_edit_prompt"
 		},
 		{
-			"action": "<F6>",
-			"key": "key_create_prompt"
+			"key": "<F6>",
+			"action": "key_create_prompt"
 		}
 	]
 }
