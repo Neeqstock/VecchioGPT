@@ -50,7 +50,7 @@ Use cases
    cd VecchioGPT
    ```
 
-2. **Create a virtual environment** (recommended):
+2. **Create a virtual environment** (optional but recommended):
    
    ```bash
    python -m venv venv
