@@ -1,0 +1,12 @@
+{
+    "model": "gpt-4o",
+    "OPENAI_API_KEY": "",
+    "sound": true,
+    "popup": "vecchio",
+    "complexity-low_model": "gpt-4o-mini",
+    "complexity-high_model": "gpt-4o",
+    "complexity-long_model": "gpt-4o",
+    "speech-to-text_model": "whisper-1",
+    "text-to-speech_model": "tts-1",
+    "text-to-speech_voice": "onyx"
+}
