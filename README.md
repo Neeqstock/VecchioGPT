@@ -138,6 +138,8 @@ OpenAI released lots of different models with different context length, cost, an
 - `high` is for high-complexity computations, which require more expensive models with more reasoning power.
 - `long` is for computation which require a high number of input and/or output tokens.
 
+In order to explain VecchioGPT that is should take into account the complexity parameter, you should set `file_specific` as a model in the model settings. Otherwise, with any other specified model, the complexity parameter will be ignored, and that specific model will be used.
+
 ## Settings
 
 In the `settings.json` file you will find some tweakable settings. You can also edit the settings through the settings editor GUI (which you can call through shortcuts, or by running directly `settingsGui.py`).
