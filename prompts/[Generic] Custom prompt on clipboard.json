@@ -7,7 +7,7 @@
     "additionalParams": [
         {
             "key": "Prompt",
-            "value": "Enclose the shortcut in `` markdown code",
+            "value": "",
             "overwrite": true
         }
     ],
