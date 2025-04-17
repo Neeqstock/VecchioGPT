@@ -7,6 +7,7 @@ from readJson import read_json_file
 from settingsManager import (
     FILE_SPECIFIC,
     OPENAI_CLIENT,
+    GOOGLE_CLIENT, # Import GOOGLE_CLIENT
     PROMPTS_FOLDER,
     read_complexity_settings,
     read_model,
@@ -70,21 +71,41 @@ def run_gpt(promptName, model, prompt, systemMessage, complexity="ignoring"):
     )
     print(prompt)
 
-    response = OPENAI_CLIENT.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": systemMessage},
-            {"role": "user", "content": prompt},
-        ],
-    )
+    response = call_client(model, prompt, systemMessage)
 
-    # Assuming 'response' is a ChatCompletion object, you should access its attributes like this:
-    ret = response.choices[0].message.content
+    # Assuming 'response' is a ChatCompletion object for OpenAI and a different object for Gemini
+    if model.startswith("gemini"):
+        # Assuming Gemini response object has a 'text' attribute or similar
+        # You might need to adjust this based on actual Gemini response structure
+        ret = response.text # Or response.candidates[0].content.parts[0].text, check Gemini API docs
+    else: # OpenAI model
+        ret = response.choices[0].message.content
+
     print("")
     print(colored("\033[1m" + "Answer" + "\033[0m", "green") + ":")
     print(ret)
     print("")
     return ret
+
+def call_client(model, prompt, systemMessage):
+    if model.startswith("gemini"):
+        # Call Gemini API
+        # Gemini might not have explicit systemMessage, so prepend it to the prompt
+        contents = systemMessage + "\n\n" + prompt
+        response = GOOGLE_CLIENT.models.generate_content(
+            model=model, contents=contents
+        )
+    else:
+        # Call OpenAI API
+        response = OPENAI_CLIENT.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": systemMessage},
+                {"role": "user", "content": prompt},
+            ],
+        )
+
+    return response
 
 
 def overwrite_additional_params_in_file(

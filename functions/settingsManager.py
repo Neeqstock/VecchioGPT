@@ -2,6 +2,8 @@ import json
 import os
 
 from openai import OpenAI
+from google import genai
+from google.genai import types
 
 
 def load_gpt_models(filename):
@@ -92,9 +94,13 @@ def read_tts_voice_settings():
             return []
 
 
-def read_api_key(file_path):
-    with open(SETTINGS_FILENAME, "r") as file:
+def read_openai_api_key(file_path):
+    with open(file_path, "r") as file:
         return json.load(file)["OPENAI_API_KEY"]
+
+def read_google_api_key(file_path):
+    with open(file_path, "r") as file:
+        return json.load(file)["GOOGLE_API_KEY"]
 
 
 def load_shortcuts(filename) -> dict:
@@ -165,7 +171,8 @@ DEFAULT_MODEL_FOR_SPEECH = GPT_MODELS[0]
 DEFAULT_ROLE = "system"
 
 # OpenAI API client
-OPENAI_CLIENT = OpenAI(api_key=read_api_key(SETTINGS_FILENAME))
+OPENAI_CLIENT = OpenAI(api_key=read_openai_api_key(SETTINGS_FILENAME))
+GOOGLE_CLIENT = genai.Client(api_key=read_google_api_key(SETTINGS_FILENAME))
 
 # SHORTCUTS
 SHORTCUTS = load_shortcuts(SHORTCUTS_FILENAME)

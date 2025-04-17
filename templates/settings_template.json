@@ -1,6 +1,7 @@
 {
     "model": "gpt-4o-mini",
     "OPENAI_API_KEY": "",
+    "GOOGLE_API_KEY": "",
     "sound": true,
     "popup": "vecchio",
     "complexity-low_model": "gpt-4o-mini",

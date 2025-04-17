@@ -7,7 +7,7 @@
     "additionalParams": [
         {
             "key": "Prompt",
-            "value": "",
+            "value": "Converyt this into a Latex table",
             "overwrite": true
         }
     ],

@@ -34,7 +34,6 @@ keymap = {
     "down": "<Down>",
 }
 
-
 class VecchioGPTGUI:
     def __init__(self):
         self.directory = os.path.join(os.path.dirname(__file__))
@@ -59,6 +58,9 @@ class VecchioGPTGUI:
         # Vecchio label
         self.vecchio_label = self.create_vecchio_label(self.search_frame)
 
+        # Position the window in the top-left corner of the active screen
+        self.root.geometry("+0+0")  # x=0, y=0 for top-left corner
+
         # Search bar
         self.entry = ttk.Entry(self.search_frame, width=80, font=("Montserrat", 12))
         self.entry.insert(0, "Search prompts...")
@@ -67,7 +69,6 @@ class VecchioGPTGUI:
         self.entry.bind("<FocusOut>", self.add_placeholder)
         self.entry.bind("<KeyRelease>", self.on_search)
         self.entry.bind(SHORTCUTS["key_create_prompt"], self.on_create)
-        self.entry.focus_set()
 
         # Prompt listbox
         self.listbox_frame = tk.Frame(self.root)
@@ -262,7 +263,6 @@ class VecchioGPTGUI:
         threading.Thread(target=open_file).start()
 
     def on_select(self, event):
-
         self.root.withdraw()
         if len(self.key_entry_pairs) > 0:
             self.overwrite_additional_params()
@@ -359,7 +359,12 @@ class VecchioGPTGUI:
 
     def show_window(self):
         self.bring_to_front()
+        self.root.deiconify()  # Ensure the window is visible
+        self.root.after(100, self.focus_entry)  # Delay focus request slightly
         self.root.mainloop()
+
+    def focus_entry(self):
+        self.entry.focus_force()  # Focus on the search bar
 
     def bring_to_front(self):
         self.root.lift()

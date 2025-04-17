@@ -3,11 +3,13 @@ thefuzz
 pyperclip
 pillow
 termcolor
-simpleaudio
-openai
 pynput
 keyboard
 tiktoken
-pyaudio
+pygame
 python-vlc
 plyer
+sounddevice
+numpy
+openai
+google-genai

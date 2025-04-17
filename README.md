@@ -16,11 +16,13 @@ VecchioGPT is a Python application that allows users to apply custom GPT prompts
 <img src="docs/vecchio_gui.png" width="500"/>
 </div>
 
-## OpenAI API
+## API Support
 
-VecchioGPT runs on the OpenAI API, which means that you need to have an OpenAI account and an [OpenAI API key](https://platform.openai.com/account/api-keys). Unlike the web version of ChatGPT Plus, which operates on a monthly subscription basis, API access is billed based on usage at very affordable prices, giving you access to all OpenAI models and tools.
+VecchioGPT can run on either the OpenAI API or the Google GenAI API depending on your settings.  
+- For OpenAI, you need an account and an [OpenAI API key](https://platform.openai.com/account/api-keys).  
+- Alternatively, if your selected model starts with "google", VecchioGPT uses the Google GenAI API. In that case, you need a Google GenAI API key.
 
-The workflow is pretty easy: you can copy some text to your system clipboard, call a custom prompt using your clipboard contents as context, then the result will be copied to the clipboard, ready to be pasted anywhere.
+The workflow is pretty easy: you copy some text to your system clipboard, call a custom prompt using that clipboard content as context, then the result is copied to the clipboard, ready to be pasted anywhere.
 
 ## Features
 
@@ -29,13 +31,13 @@ Main features
 - Clipboard Integration: Easily generate prompts which include the contents of your system clipboard.
 - Customization: Easily create custom prompts to cover a wide range of use cases, using an extremely easy syntax.
 - Sharing: Prompts are saved in JSON files which can be easily shared.
-- Workflow Efficiency: Use a designated hotkey to call VecchioGPT, and the user-defined prompt is executed, with the output conveniently pasted into the clipboard.
+- Workflow Efficiency: Use a designated hotkey to call VecchioGPT, and the user-defined prompt is executed with the output conveniently pasted into the clipboard.
 - Interactive GUI: A cross-platform graphical user interface provides a user-friendly way to select and customize prompts.
 
 Extras
 
-- Voice command: Call a voice prompt with/without using your clipboard contents as context (using OpenAI Whisper)
-- Read aloud: Speak the contents of your clipboard (using OpenAI TTS)
+- Voice command: Call a voice prompt with/without using your clipboard contents as context (using OpenAI Whisper).
+- Read aloud: Speak the contents of your clipboard (using OpenAI TTS).
 
 Use cases
 

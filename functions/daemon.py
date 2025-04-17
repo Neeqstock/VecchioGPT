@@ -4,6 +4,7 @@ import keyboard
 import queue
 import subprocess
 
+import repeatLast
 import notifications
 from settingsManager import (
     GPT_MODELS,
@@ -42,6 +43,10 @@ def next_model():
 
 def key_gui_prompt():
     subprocess.call(["python", os.path.join(os.path.dirname(__file__), "gui.py")])
+    print(wait_message)
+
+def key_last_prompt():
+    repeatLast.repeat_last_prompt()
     print(wait_message)
 
 
@@ -103,6 +108,7 @@ action_descriptions = {
     "key_tts": "reads the contents of the clipboard out loud",
     "key_abort": "abort recording or sound playback",
     "key_end_record": "stops and confirms the recording",
+    "key_last_prompt": "repeats the last prompt",
     "key_settings": "opens the settings GUI",
     "key_edit_prompt": "(while in the GUI) edit the currently selected prompt file, in system editor",
     "key_create_prompt": "(while in the GUI) create a new prompt file, with default name 'example_prompt.json'",
@@ -123,6 +129,7 @@ if __name__ == "__main__":
         "key_speech_clipboard": key_speech_clipboard,
         "key_tts": key_tts,
         "key_settings": key_settings,
+        "key_last_prompt": key_last_prompt,
     }
 
     # Set up hotkeys dynamically
