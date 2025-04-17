@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="VecchioGPT.png" alt="VecchioGPT logo. Thanks for existing, Stable Diffusion, because I can't draw." width="150px" height="150px" />
+  <img src="VecchioGPT.png" alt="VecchioGPT logo. Thanks for existing, Stable Diffusion, because we can't draw." width="150px" height="150px" />
 </div>
 
 # VecchioGPT
@@ -18,9 +18,9 @@ VecchioGPT is a Python application that allows users to apply custom GPT prompts
 
 ## API Support
 
-VecchioGPT can run on either the OpenAI API or the Google GenAI API depending on your settings.  
-- For OpenAI, you need an account and an [OpenAI API key](https://platform.openai.com/account/api-keys).  
-- Alternatively, if your selected model starts with "google", VecchioGPT uses the Google GenAI API. In that case, you need a Google GenAI API key.
+VecchioGPT can run on either the OpenAI API or the Google GenAI API depending on your settings and selected model.  
+- By default, call will be made to the OpenAI client. For OpenAI, you need an account and an [OpenAI API key](https://platform.openai.com/account/api-keys).  
+- Alternatively, if your selected model name starts with "gemini", VecchioGPT will call the Google GenAI API. In that case, you need a Google GenAI API key.
 
 The workflow is pretty easy: you copy some text to your system clipboard, call a custom prompt using that clipboard content as context, then the result is copied to the clipboard, ready to be pasted anywhere.
 
