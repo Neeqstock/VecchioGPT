@@ -104,7 +104,7 @@ OPENAI_API_KEY=<your-OpenAI-key>
 ## Usage
 
 - Copy some text using CTRL+C
-- Open the VecchioGPT prompt selection GUI
+- Open the VecchioGPT prompt selection GUI (check the related keyboard shortcut which will be shown on console at startup!)
   - Navigate using TAB/SHIFT+TAB and arrow keys
   - Select the prompt from the list and edit the additional parameters, if necessary
 - Launch the prompt by pressing ENTER
