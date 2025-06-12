@@ -13,3 +13,5 @@ sounddevice
 numpy
 openai
 google-genai
+google-cloud-speech
+ffmpeg-python
