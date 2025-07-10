@@ -3,6 +3,7 @@ import numpy as np
 import wave
 import keyboard
 import notifications
+import os
 from settingsManager import (
     SHORTCUTS,
     SOUND_ABORT_FILENAME,
@@ -33,11 +34,13 @@ def record_audio_until_keystroke(filename):
     # Define a callback function to capture audio data
     def callback(indata, frames, time, status):
         if status:
-            print(status)  # Print any errors
-        recorded_frames.append(indata.copy())
+            print(f"Status: {status}")  # Print any errors
+        # Ensure indata is not empty
+        if len(indata) > 0:
+            recorded_frames.append(indata.copy())
 
     # Start recording
-    with sd.InputStream(samplerate=sample_rate, channels=channels, callback=callback):
+    with sd.InputStream(samplerate=sample_rate, channels=channels, callback=callback, dtype='int16'):
         while True:
             # Check for key presses
             if keyboard.is_pressed(SHORTCUTS["key_abort"]):
@@ -53,14 +56,34 @@ def record_audio_until_keystroke(filename):
                 print("Recording stopped. Sending to Whisper API for processing...\n")
                 break
 
-    # Convert the recorded frames to a NumPy array
-    audio_data = np.concatenate(recorded_frames, axis=0)
+    # Check if we have any recorded frames
+    if not recorded_frames:
+        print("No audio was recorded!")
+        return False
 
-    # Save the recorded data as a WAV file
-    with wave.open(filename, 'wb') as wf:
-        wf.setnchannels(channels)
-        wf.setsampwidth(2)  # 16-bit audio
-        wf.setframerate(sample_rate)
-        wf.writeframes(audio_data.tobytes())
-
-    return True
+    try:
+        # Convert the recorded frames to a NumPy array
+        audio_data = np.concatenate(recorded_frames, axis=0)
+        
+        # Scale to int16 range if needed
+        if audio_data.dtype != np.int16:
+            audio_data = (audio_data * 32767).astype(np.int16)
+            
+        # Save the recorded data as a WAV file
+        with wave.open(filename, 'wb') as wf:
+            wf.setnchannels(channels)
+            wf.setsampwidth(2)  # 16-bit audio
+            wf.setframerate(sample_rate)
+            wf.writeframes(audio_data.tobytes())
+            
+        # Verify file was created and has content
+        if os.path.exists(filename) and os.path.getsize(filename) > 1000:
+            print(f"Audio saved successfully: {filename}, size: {os.path.getsize(filename)} bytes")
+            return True
+        else:
+            print(f"Warning: Audio file too small or not created: {filename}")
+            return False
+            
+    except Exception as e:
+        print(f"Error saving audio file: {e}")
+        return False
